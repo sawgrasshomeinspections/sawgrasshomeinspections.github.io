@@ -226,7 +226,7 @@ const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
     day: "2-digit",
 });
 
-const WIND_MITIGATION_PDF_NAME = "assets/static/SW Wind Mitigation.pdf";
+const WIND_MITIGATION_PDF_NAME = "SW Wind Mitigation.pdf";
 
 /**
  * Returns the logical value for a given HTML input element.
