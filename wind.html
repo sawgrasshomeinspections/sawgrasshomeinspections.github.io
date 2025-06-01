@@ -1,0 +1,1298 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SW Wind Mitigation Form</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+
+</head>
+
+<body data-new-gr-c-s-check-loaded="8.912.0" data-gr-ext-installed="">
+    <form id="form" autocomplete="off">
+        <div class="container my-4">
+            <h2 class="text-center">SW Wind Mitigation Form</h2>
+
+            <!-- Inspection Date -->
+            <section class="border p-3 mb-4">
+                <div class="mb-3">
+                    <label for="inspectorInitials" class="form-label">Inspector Initials:</label>
+                    <input type="text" class="form-control" id="inspectorInitials">
+                </div>
+                <div class="mb-3">
+                    <label for="propertyAddress" class="form-label">Property Address:</label>
+                    <input type="text" class="form-control" id="propertyAddress">
+                </div>
+                <div class="mb-3">
+                    <label for="preparedFor" class="form-label">Prepared For:</label>
+                    <input type="text" class="form-control" id="preparedFor">
+                </div>
+                <div class="mb-3">
+                    <label for="forAddress" class="form-label">For Address:</label>
+                    <input type="text" class="form-control" id="forAddress">
+                </div>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Date:</label>
+                    <input type="date" class="form-control" id="date">
+                </div>
+            </section>
+
+            <!-- Owner Information -->
+            <section class="border p-3 mb-4">
+                <h4 class="mb-3"><u>Owner Information</u></h4>
+
+                <div class="mb-3">
+                    <label class="form-label" for="ownerName">Owner Name</label>
+                    <input type="text" id="ownerName" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="contactPerson">Contact Person</label>
+                    <input type="text" id="contactPerson" class="form-control" />
+                </div>
+
+                <div class="mb-3">
+                    <label for="inspectionDate" class="form-label">Inspection Date</label>
+                    <input type="date" class="form-control" id="inspectionDate">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label" for="email">Email</label>
+                    <input type="text" id="email" class="form-control" />
+                </div>
+
+                <div class="row g-3 mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="ownerAddress">Address</label>
+                        <input type="text" id="ownerAddress" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="ownerCity">City</label>
+                        <input type="text" id="ownerCity" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="ownerZip">ZIP</label>
+                        <input type="text" id="ownerZip" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="ownerCounty">County</label>
+                        <input type="text" id="ownerCounty" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="homePhone">Home Phone</label>
+                        <input type="text" id="homePhone" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="workPhone">Work Phone</label>
+                        <input type="text" id="workPhone" class="form-control" />
+                    </div>
+                    <div class="col-md-4">
+                        <label class="form-label" for="cellPhone">Cell Phone</label>
+                        <input type="text" id="cellPhone" class="form-control" />
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label class="form-label" for="ownerInsurance">Insurance Company</label>
+                        <input type="text" id="ownerInsurance" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="ownerPolicy">Policy #</label>
+                        <input type="text" id="ownerPolicy" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="homeYearBuilt">Year of Home</label>
+                        <input type="text" id="homeYearBuilt" class="form-control" />
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label" for="homeStories"># of Stories</label>
+                        <input type="text" id="homeStories" class="form-control" />
+                    </div>
+                </div>
+            </section>
+
+
+            <div class="border p-3 mb-4">
+                <h4>1. <strong><u>Building Code</strong></u></h4>
+                <p>Was the structure built in compliance with the Florida Building Code (FBC 2001 or later) OR for homes
+                    located in the HVHZ (Miami-Dade or Broward counties), South Florida Building Code (SFBC-94)?</p>
+                <hr>
+                <!-- Option A -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="buildingCode" id="buildingCodeA"
+                        data-bs-toggle="collapse" data-bs-target="#collapseMenuA" aria-expanded="false"
+                        aria-controls="collapseMenuA">
+                    <label class="form-check-label" for="buildingCodeA">A. Built in compliance with the FBC</label>
+                </div>
+
+                <!-- Option B -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="buildingCode" id="buildingCodeB"
+                        data-bs-toggle="collapse" data-bs-target="#collapseMenuB" aria-expanded="false"
+                        aria-controls="collapseMenuB">
+                    <label class="form-check-label" for="buildingCodeB">B. For the HVHZ Only: Built in compliance with
+                        the SFBC-94</label>
+                </div>
+
+                <!-- Option C -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="buildingCode" id="buildingCodeC"
+                        data-bs-toggle="#collapseMenu" aria-expanded="false">
+                    <label class="form-check-label" for="buildingCodeC">C. Unknown or does not meet the requirements of
+                        Answer “A” or “B”</label>
+                </div>
+
+                <div id="collapseMenuA" class="collapse" data-bs-parent="#buildingCodeGroupA">
+                    <div class="card card-body">
+                        <h3 class="fw-bold">Built in compliance with the FBC</h3>
+                        <div class="mb-3">
+                            <label for="permitDateA" class="form-label">Permit Date:</label>
+                            <input type="date" class="form-control" id="permitDateA">
+                        </div>
+                        <div class="mb-3">
+                            <label for="yearBuiltA" class="form-label">Year Built:</label>
+                            <input type="text" class="form-control" id="yearBuiltA" placeholder="Enter year built">
+                        </div>
+                    </div>
+                </div>
+
+                <div id="collapseMenuB" class="collapse" data-bs-parent="#buildingCodeGroupB">
+                    <div class="card card-body">
+                        <h3 class="fw-bold">Built in compliance with the SFBC-9</h3>
+                        <div class="mb-3">
+                            <label for="permitDateB" class="form-label">Permit Date:</label>
+                            <input type="date" class="form-control" id="permitDateB">
+                        </div>
+                        <div class="mb-3">
+                            <label for="yearBuiltB" class="form-label">Year Built:</label>
+                            <input type="text" class="form-control" id="yearBuiltB" placeholder="Enter year built">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border p-3 mb-4">
+                <h4>2. <strong><u>Roof Covering</strong></u></h4>
+                <p>Select all roof covering types in use. Provide the permit application date OR FBC/MDC Product
+                    Approval
+                    number OR Year of Original Installation/Replacement OR indicate that no information was available to
+                    verify compliance for each roof covering identified.</p>
+                <hr>
+                <!-- Checkbox for each roof covering type with collapsible details -->
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" id="shingle" data-bs-toggle="collapse"
+                        data-bs-target="#collapseShingle">
+                    <label class="form-check-label" for="shingle">
+                        <h5>Asphalt/Fiberglass Shingle</h5>
+                    </label>
+                </div>
+                <div id="collapseShingle" class="collapse">
+                    <div class="card card-body">
+                        <div class="mb-3">
+                            <label for="permitDateShingle" class="form-label">Permit Application Date:</label>
+                            <input type="date" class="form-control" id="permitDateShingle">
+                        </div>
+                        <div class="mb-3">
+                            <label for="approvalShingle" class="form-label">FBC or MDC Product Approval #:</label>
+                            <input type="text" class="form-control" id="approvalShingle"
+                                placeholder="Enter product approval number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="installationShingle" class="form-label">Year of Original Installation or
+                                Replacement:</label>
+                            <input type="text" class="form-control" id="installationShingle" placeholder="Enter year">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="noInformationShingle" class="form-label">No Information Provided for
+                                Compliance:</label>
+                            <input type="checkbox" class="form-check-input" id="noInformationShingle">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" id="tile" data-bs-toggle="collapse"
+                        data-bs-target="#collapseTile">
+                    <label class="form-check-label" for="tile">
+                        <h5>Concrete/Clay Tile</h5>
+                    </label>
+                </div>
+                <div id="collapseTile" class="collapse">
+                    <div class="card card-body">
+                        <div class="mb-3">
+                            <label for="permitDateTile" class="form-label">Permit Application Date:</label>
+                            <input type="date" class="form-control" id="permitDateTile">
+                        </div>
+                        <div class="mb-3">
+                            <label for="approvalTile" class="form-label">FBC or MDC Product Approval #:</label>
+                            <input type="text" class="form-control" id="approvalTile"
+                                placeholder="Enter product approval number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="installationTile" class="form-label">Year of Original Installation or
+                                Replacement:</label>
+                            <input type="text" class="form-control" id="installationTile" placeholder="Enter year">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="noInformationTile" class="form-label">No Information Provided for
+                                Compliance:</label>
+                            <input type="checkbox" class="form-check-input" id="noInformationTile">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Repeat similar structure for other roof covering types -->
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" id="metal" data-bs-toggle="collapse"
+                        data-bs-target="#collapseMetal">
+                    <label class="form-check-label" for="metal">
+                        <h5>Metal</h5>
+                    </label>
+                </div>
+                <div id="collapseMetal" class="collapse">
+                    <div class="card card-body">
+                        <div class="mb-3">
+                            <label for="permitDateMetal" class="form-label">Permit Application Date:</label>
+                            <input type="date" class="form-control" id="permitDateMetal">
+                        </div>
+                        <div class="mb-3">
+                            <label for="approvalMetal" class="form-label">FBC or MDC Product Approval #:</label>
+                            <input type="text" class="form-control" id="approvalMetal"
+                                placeholder="Enter product approval number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="installationMetal" class="form-label">Year of Original Installation or
+                                Replacement:</label>
+                            <input type="text" class="form-control" id="installationMetal" placeholder="Enter year">
+                        </div>
+
+                        <div class="mb-3">
+                            <label for="noInformationMetal" class="form-label">No Information Provided for
+                                Compliance:</label>
+                            <input type="checkbox" class="form-check-input" id="noInformationMetal">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" id="builtUp" data-bs-toggle="collapse"
+                        data-bs-target="#collapseBuiltUp">
+                    <label class="form-check-label" for="builtUp">
+                        <h5>Built Up</h5>
+                    </label>
+                </div>
+                <div id="collapseBuiltUp" class="collapse">
+                    <div class="card card-body">
+                        <div class="mb-3">
+                            <label for="permitDateBuiltUp" class="form-label">Permit Application Date:</label>
+                            <input type="date" class="form-control" id="permitDateBuiltUp">
+                        </div>
+                        <div class="mb-3">
+                            <label for="approvalBuiltUp" class="form-label">FBC or MDC Product Approval #:</label>
+                            <input type="text" class="form-control" id="approvalBuiltUp"
+                                placeholder="Enter product approval number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="installationBuiltUp" class="form-label">Year of Original Installation or
+                                Replacement:</label>
+                            <input type="text" class="form-control" id="installationBuiltUp" placeholder="Enter year">
+                        </div>
+                        <div class="mb-3">
+                            <label for="noInformationBuiltUp" class="form-label">No Information Provided for
+                                Compliance:</label>
+                            <input type="checkbox" class="form-check-input" id="noInformationBuiltUp">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" id="membrane" data-bs-toggle="collapse"
+                        data-bs-target="#collapseMembrane">
+                    <label class="form-check-label" for="membrane">
+                        <h5>Membrane</h5>
+                    </label>
+                </div>
+                <div id="collapseMembrane" class="collapse">
+                    <div class="card card-body">
+                        <div class="mb-3">
+                            <label for="permitDateMembrane" class="form-label">Permit Application Date:</label>
+                            <input type="date" class="form-control" id="permitDateMembrane">
+                        </div>
+                        <div class="mb-3">
+                            <label for="approvalMembrane" class="form-label">FBC or MDC Product Approval #:</label>
+                            <input type="text" class="form-control" id="approvalMembrane"
+                                placeholder="Enter product approval number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="installationMembrane" class="form-label">Year of Original Installation or
+                                Replacement:</label>
+                            <input type="text" class="form-control" id="installationMembrane" placeholder="Enter year">
+                        </div>
+                        <div class="mb-3">
+                            <label for="noInformationMembrane" class="form-label">No Information Provided for
+                                Compliance:</label>
+                            <input type="checkbox" class="form-check-input" id="noInformationMembrane">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-check mb-2">
+                    <input type="checkbox" class="form-check-input" id="other" data-bs-toggle="collapse"
+                        data-bs-target="#collapseOther">
+                    <label class="form-check-label" for="other">
+                        <h5>Other</h5>
+                    </label>
+                </div>
+                <div id="collapseOther" class="collapse">
+                    <div class="card card-body">
+                        <div class="mb-3">
+                            <label for="typeOther" class="form-label">Type:</label>
+                            <input type="text" class="form-control" id="typeOther"
+                                placeholder="Enter the type of the roof convering">
+                        </div>
+                        <div class="mb-3">
+                            <label for="permitDateOther" class="form-label">Permit Application Date:</label>
+                            <input type="date" class="form-control" id="permitDateOther">
+                        </div>
+                        <div class="mb-3">
+                            <label for="approvalOther" class="form-label">FBC or MDC Product Approval #:</label>
+                            <input type="text" class="form-control" id="approvalOther"
+                                placeholder="Enter product approval number">
+                        </div>
+                        <div class="mb-3">
+                            <label for="installationOther" class="form-label">Year of Original Installation or
+                                Replacement:</label>
+                            <input type="text" class="form-control" id="installationOther" placeholder="Enter year">
+                        </div>
+                        <div class="mb-3">
+                            <label for="noInformationOther" class="form-label">No Information Provided for
+                                Compliance:</label>
+                            <input type="checkbox" class="form-check-input" id="noInformationOther">
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofCovering" id="optionA">
+                    <label class="form-check-label" for="optionA">A. All roof coverings listed above meet the FBC with a
+                        FBC
+                        or Miami-Dade Product Approval listing...</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofCovering" id="optionB">
+                    <label class="form-check-label" for="optionB">B. All roof coverings have a Miami-Dade Product
+                        Approval
+                        listing current...</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofCovering" id="optionC">
+                    <label class="form-check-label" for="optionC">C. One or more roof coverings do not meet the
+                        requirements
+                        of Answer “A” or “B”.</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofCovering" id="optionD">
+                    <label class="form-check-label" for="optionD">D. No roof coverings meet the requirements of Answer
+                        “A”
+                        or “B”.</label>
+                </div>
+            </div>
+
+            <div class="border p-3 mb-4">
+                <h4>3. <strong><u>Roof Deck Attachment</u></strong></h4>
+                <p>What is the <strong><u>weakest</u></strong> form of roof deck attachment?</p>
+                <hr>
+                <p class="mt-3">
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="roofDeckAttachment"
+                        id="roofDeckAttachmentOptionA">
+                    <label class="form-check-label" for="roofDeckAttachmentOptionA">A. Plywood/Oriented strand board
+                        (OSB) roof sheathing
+                        attached to the roof truss/rafter (spaced a maximum of 24” inches o.c.)
+                        by staples or 6d nails spaced at 6” along the edge and 12” in the field. -OR- Batten decking
+                        supporting wood shakes or wood
+                        shingles. -OR- Any system of screws, nails, adhesives, other deck fastening system or
+                        truss/rafter spacing that has an equivalent
+                        mean uplift less than that required for Options B or C below..</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="roofDeckAttachment"
+                        id="roofDeckAttachmentOptionB">
+                    <label class="form-check-label" for="roofDeckAttachmentOptionB">B. Plywood/OSB roof sheathing with a
+                        minimum thickness
+                        of 7/16”inch attached to the roof truss/rafter (spaced a maximum of
+                        24”inches o.c.) by 8d common nails spaced a maximum of 12” inches in the field.-OR- Any system
+                        of screws, nails, adhesives,
+                        other deck fastening system or truss/rafter spacing that is shown to have an equivalent or
+                        greater resistance 8d nails spaced a
+                        maximum of 12 inches in the field or has a mean uplift resistance of at least 103 psf.</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="roofDeckAttachment"
+                        id="roofDeckAttachmentOptionC">
+                    <label class="form-check-label" for="roofDeckAttachmentOptionC">C. Plywood/OSB roof sheathing with a
+                        minimum thickness
+                        of 7/16”inch attached to the roof truss/rafter (spaced a maximum of
+                        24”inches o.c.) by 8d common nails spaced a maximum of 6” inches in the field. -OR- Dimensional
+                        lumber/Tongue & Groove
+                        decking with a minimum of 2 nails per board (or 1 nail per board if each board is equal to or
+                        less than 6 inches in width). -OR-
+                        Any system of screws, nails, adhesives, other deck fastening system or truss/rafter spacing that
+                        is shown to have an equivalent or greater resistance than 8d common nails spaced a maximum of 6
+                        inches in the field or has a mean uplift resistance of at least
+                        182 psf.</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="roofDeckAttachment"
+                        id="roofDeckAttachmentOptionD">
+                    <label class="form-check-label" for="roofDeckAttachmentOptionD">D. Reinforced Concrete Roof
+                        Deck.</label>
+                </div>
+                <!-- Add dropdown -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="roofDeckAttachment"
+                        id="roofDeckAttachmentOptionE" data-bs-toggle="collapse"
+                        data-bs-target="#collapseRoofDeckAttachmentOther">
+                    <label class="form-check-label" for="roofDeckAttachmentOptionE">E. Other</label>
+                    <div id="collapseRoofDeckAttachmentOther" class="collapse">
+                        <div class="card card-body">
+                            <input type="text" class="form-control" id="roofDeckAttachmentOtherType"
+                                placeholder="Enter other roof/deck attachment type">
+
+                        </div>
+                    </div>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="roofDeckAttachment"
+                        id="roofDeckAttachmentOptionF">
+                    <label class="form-check-label" for="roofDeckAttachmentOptionF">F. Unknown or unidentified</label>
+                </div>
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="radio" name="roofDeckAttachment"
+                        id="roofDeckAttachmentOptionG">
+                    <label class="form-check-label" for="roofDeckAttachmentOptionG">G. No attic access.</label>
+                </div>
+            </div>
+
+            <!-- 4. Roof to Wall Attachment -->
+            <div class="border p-3 mb-4">
+                <h4>4. <strong><u>Roof to Wall Attachment</u></strong></h4>
+                <p>
+                    What is the <strong>WEAKEST</strong> roof-to-wall connection?<br>
+                    <small class="text-muted">
+                        (Do not include attachment of hip/valley jacks within&nbsp;5&nbsp;ft of the inside or outside
+                        corner of the roof when determining the weakest type.)
+                    </small>
+                </p>
+                <hr>
+
+                <!-- A – Toe Nails -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofToWallAttachment" id="rtwA">
+                    <label class="form-check-label" for="rtwA">
+                        A. Toe Nails<br>
+                        <small class="text-muted">
+                            <div class="form-check ms-3">
+                                <input class="form-check-input" type="checkbox" id="rtwA1" name="roofToWallAttachment"
+                                    value="A1">
+                                <label class="form-check-label" for="rtwA1">
+                                    Truss/rafter anchored to top plate using nails driven at an angle through the
+                                    truss/rafter and into the top plate, <em>or</em>
+                                </label>
+                            </div>
+                            <div class="form-check ms-3 mb-2">
+                                <input class="form-check-input" type="checkbox" id="rtwA2" name="roofToWallAttachment"
+                                    value="A2">
+                                <label class="form-check-label" for="rtwA2">
+                                    Metal connectors that do <u>not</u> meet the minimal conditions or requirements of
+                                    B, C, or D
+                                </label>
+                            </div>
+                        </small>
+                    </label>
+                </div>
+
+                <!-- Minimal-conditions explanatory note -->
+                <p class="fw-bold mb-1">Minimal conditions to qualify for categories B, C, or D. All visible metal
+                    connectors are:</p>
+                <ul class="small">
+                    <input class="form-check-input" type="checkbox" id="rtwA3" value="A3">
+
+                    <label class="form-check-label" for="rtwA3">Secured to the truss/rafter with a minimum of three (3)
+                        nails, <strong>and</strong></label>
+                    <p></p>
+                    <input class="form-check-input" type="checkbox" id="rtwA4" value="A4">
+                    <label class="form-check-label" for="rtwA4">Attached to the wall top plate (or embedded in the bond
+                        beam) with &lt; ½&nbsp;in gap from
+                        blocking, blocked no more than 1.5 in of the truss/rafter, and free of severe corrosion.</label>
+                </ul>
+
+                <!-- B – Clips -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofToWallAttachment" id="rtwB">
+                    <label class="form-check-label" for="rtwB">
+                        B. Clips<br>
+                        <small class="text-muted">
+                            <div class="form-check ms-3">
+                                <input class="form-check-input" type="checkbox" id="rtwB1" name="roofToWallAttachment"
+                                    value="B1">
+                                <label class="form-check-label" for="rtwB1">
+                                    Metal connectors that do <u>not</u> wrap over the top of the truss/rafter,
+                                    <em>or</em>
+                                </label>
+                            </div>
+                            <div class="form-check ms-3 mb-2">
+                                <input class="form-check-input" type="checkbox" id="rtwB2" name="roofToWallAttachment"
+                                    value="B2">
+                                <label class="form-check-label" for="rtwB2">
+                                    Metal connectors with one strap wrapping over the top but fastened with ≥ 3 nails
+                                    (doesn’t meet C/D nail-position rules)
+                                </label>
+                            </div>
+                        </small>
+                    </label>
+                </div>
+
+                <!-- C – Single Wraps -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofToWallAttachment" id="rtwC">
+                    <label class="form-check-label" for="rtwC">
+                        C. Single Wraps<br>
+                        <small class="text-muted">
+                            Single strap over the truss/rafter, secured with ≥ 2 nails on the front side and ≥ 1 nail on
+                            the opposite side.
+                        </small>
+                    </label>
+                </div>
+
+                <!-- D – Double Wraps -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="rtwD">
+                    <label class="form-check-label" for="rtwD">
+                        D. Double Wraps<br>
+                        <small class="text-muted">
+                            <div class="form-check ms-3">
+                                <input class="form-check-input" type="checkbox" id="rtwD1" value="D1">
+                                <label class="form-check-label" for="rtwD1">
+                                    Two separate straps (one each side) each secured with ≥ 2 nails front &amp; ≥ 1 nail
+                                    opposite, <em>or</em>
+                                </label>
+                            </div>
+                            <div class="form-check ms-3 mb-2">
+                                <input class="form-check-input" type="checkbox" id="rtwD2" value="D2">
+                                <label class="form-check-label" for="rtwD2">
+                                    One strap wrapping over top, secured to wall on both sides with ≥ 3 nails on each
+                                    side
+                                </label>
+                            </div>
+                        </small>
+                    </label>
+                </div>
+
+                <!-- E – Structural -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofToWallAttachment" id="rtwE">
+                    <label class="form-check-label" for="rtwE">
+                        E. Structural — anchor bolts structurally connected or reinforced-concrete roof.
+                    </label>
+                </div>
+
+                <!-- F – Other (collapsible text input) -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofToWallAttachment" id="rtwF"
+                        data-bs-toggle="collapse" data-bs-target="#collapseRTWOther">
+                    <label class="form-check-label" for="rtwF">F. Other</label>
+                    <div id="collapseRTWOther" class="collapse">
+                        <div class="card card-body">
+                            <input type="text" class="form-control" id="rtwOtherType"
+                                placeholder="Describe other roof-to-wall connection">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- G – Unknown -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofToWallAttachment" id="rtwG">
+                    <label class="form-check-label" for="rtwG">G. Unknown or unidentified</label>
+                </div>
+
+                <!-- H – No attic access -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofToWallAttachment" id="rtwH">
+                    <label class="form-check-label" for="rtwH">H. No attic access</label>
+                </div>
+            </div>
+
+            <!-- 5. Roof Geometry -->
+            <div class="border p-3 mb-4">
+                <h4>5. <strong><u>Roof Geometry</u></strong></h4>
+                <p>
+                    What is the roof shape?<br>
+                    <small class="text-muted">
+                        (Do not consider roofs of porches or carports that are attached only to the fascia or wall of
+                        the host structure over unenclosed space when determining roof perimeter or roof area for
+                        roof-geometry classification.)
+                    </small>
+                </p>
+                <hr>
+
+                <!-- A. Hip Roof -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofGeometry" id="roofHip"
+                        data-bs-toggle="collapse" data-bs-target="#collapseHip" aria-expanded="false"
+                        aria-controls="collapseHip">
+                    <label class="form-check-label" for="roofHip">
+                        A. Hip Roof — hip roof with no other roof shapes greater than 10 % of the total roof-system
+                        perimeter.
+                    </label>
+                </div>
+
+                <!-- Hip inputs -->
+                <div class="collapse ms-4" id="collapseHip" data-bs-parent="">
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <label class="form-label small" for="hipNonHipLength">
+                                Total length of non-hip features (ft)
+                            </label>
+                            <input type="number" class="form-control form-control-sm" id="hipNonHipLength"
+                                placeholder="feet">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small" for="hipPerimeter">
+                                Total roof-system perimeter (ft)
+                            </label>
+                            <input type="number" class="form-control form-control-sm" id="hipPerimeter"
+                                placeholder="feet">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- B. Flat Roof -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofGeometry" id="roofFlat"
+                        data-bs-toggle="collapse" data-bs-target="#collapseFlat" aria-expanded="false"
+                        aria-controls="collapseFlat">
+                    <label class="form-check-label" for="roofFlat">
+                        B. Flat Roof — building with 5 + units where ≥ 90 % of the main roof area has a slope &lt; 2 :
+                        12.
+                    </label>
+                </div>
+
+                <!-- Flat inputs -->
+                <div class="collapse ms-4" id="collapseFlat" data-bs-parent="">
+                    <div class="row g-2">
+                        <div class="col-md-6">
+                            <label class="form-label small" for="flatLowSlopeArea">
+                                Roof area with slope &lt; 2 : 12 (sq ft)
+                            </label>
+                            <input type="number" class="form-control form-control-sm" id="flatLowSlopeArea"
+                                placeholder="sq ft">
+                        </div>
+                        <div class="col-md-6">
+                            <label class="form-label small" for="flatTotalArea">
+                                Total roof area (sq ft)
+                            </label>
+                            <input type="number" class="form-control form-control-sm" id="flatTotalArea"
+                                placeholder="sq ft">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- C. Other Roof -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" name="roofGeometry" id="roofOther">
+                    <label class="form-check-label" for="roofOther">
+                        C. Other Roof — any roof that doesn’t qualify as (A) or (B) above.
+                    </label>
+                </div>
+            </div>
+
+            <!-- 6. Secondary Water Resistance (SWR) -->
+            <div class="border p-3 mb-4">
+                <h4>6. <strong><u>Secondary Water Resistance&nbsp;(SWR)</u></strong></h4>
+                <p class="mb-1">
+                    <small class="text-muted">
+                        (Standard underlayments or hot-mopped felts do <u>not</u> qualify as an SWR)
+                    </small>
+                </p>
+                <hr>
+
+                <!-- A – SWR present -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="swrA" name="swr">
+                    <label class="form-check-label" for="swrA">
+                        A. SWR (also called Sealed Roof Deck)&nbsp;— self-adhering polymer modified-bitumen roofing
+                        underlayment applied directly to the sheathing or foam-adhesive SWR barrier (not foamed-on
+                        insulation) used as a supplemental means to protect the dwelling from water intrusion in
+                        the event of roof-covering loss.
+                    </label>
+                </div>
+
+                <!-- B – No SWR -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="swrB" name="swr">
+                    <label class="form-check-label" for="swrB">
+                        B. No SWR
+                    </label>
+                </div>
+
+                <!-- C – Unknown -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="swrC" name="swr">
+                    <label class="form-check-label" for="swrC">
+                        C. Unknown or undetermined
+                    </label>
+                </div>
+            </div>
+
+            <!-- 7. Opening Protection -->
+            <div class="border p-3 mb-4">
+                <h4>7. <strong><u>Opening Protection</u></strong></h4>
+                <p class="mb-1">
+                    What is the weakest form of wind-borne debris protection installed on the structure?<br>
+                    First, use the table to note the protection level for each opening type. Then:<br>
+                    (a) choose A, B, C, N, or X (below) based on the <em>lowest</em> level for all glazed openings,
+                    and<br>
+                    (b) check the protection level for all non-glazed openings (1, 2, or 3) as applicable.
+                </p>
+
+                <!-- Opening-Protection Level Chart -->
+                <div class="table-responsive mb-3">
+                    <table class="table table-bordered align-middle text-center small">
+                        <thead class="table-light">
+                            <tr>
+                                <th rowspan="2" class="align-middle">Level</th>
+                                <th colspan="4">Glazed Openings</th>
+                                <th colspan="2">Non-Glazed Openings</th>
+                            </tr>
+                            <tr>
+                                <th>Windows /<br>Entry Doors</th>
+                                <th>Garage<br>Doors</th>
+                                <th>Skylights</th>
+                                <th>Glass Block</th>
+                                <th>Entry&nbsp;Doors</th>
+                                <th>Garage&nbsp;Doors</th>
+                            </tr>
+                        </thead>
+
+                        <!-- Helper to shrink checkboxes -->
+                        <style>
+                            .op-chk {
+                                width: 1rem;
+                                height: 1rem;
+                                margin: 0;
+                            }
+                        </style>
+
+                        <tbody>
+                            <!-- Row generator: N/A, A, B, C, D, N, X -->
+                            <!-- N/A -->
+                            <tr>
+                                <th scope="row">N/A</th>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="naW"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="naGd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="naSky"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="naGb"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="naEd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="naNgd"></td>
+                            </tr>
+
+                            <!-- A -->
+                            <tr>
+                                <th scope="row">A</th>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="aW"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="aGd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="aSky"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="aGb"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="aEd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="aNgd"></td>
+                            </tr>
+
+                            <!-- B -->
+                            <tr>
+                                <th scope="row">B</th>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="bW"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="bGd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="bSky"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="bGb"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="bEd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="bNgd"></td>
+                            </tr>
+
+                            <!-- C -->
+                            <tr>
+                                <th scope="row">C</th>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="cW"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="cGd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="cSky"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="cGb"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="cEd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="cNgd"></td>
+                            </tr>
+
+                            <!-- D -->
+                            <tr>
+                                <th scope="row">D</th>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="dW"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="dGd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="dSky"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="dGb"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="dEd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="dNgd"></td>
+                            </tr>
+
+                            <!-- N -->
+                            <tr>
+                                <th scope="row">N</th>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="nW1">
+                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nW2">
+                                </td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="nGd1">
+                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nGd2">
+                                </td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="nSky1">
+                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nSky2">
+                                </td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="nGb1">
+                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nGb2">
+                                </td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="nEd1">
+                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nEd2">
+                                </td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="nNgd1">
+                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nNgd2">
+                                </td>
+                            </tr>
+
+                            <!-- X -->
+                            <tr>
+                                <th scope="row">X</th>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="xW"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="xGd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="xSky"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="xGb"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="xEd"></td>
+                                <td><input type="checkbox" class="form-check-input op-chk" id="xNgd"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Detailed A-B-C selections -->
+                <p class="fw-bold mb-1">Choose the lowest verified protection for <u>all glazed openings</u> (A, B, C,
+                    N, or X) and mark non-glazed openings if applicable:</p>
+
+                <!-- A -->
+                <!-- ⬇️ A. Exterior Opening Protection – Large-Missile 9-lb (4.5-lb skylights) -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="openProtA" name="openProt">
+                    <label class="form-check-label fw-bold" for="openProtA">
+                        A. Exterior Openings — Cyclic Pressure and 9-lb Large Missile
+                        <span class="small">(4.5 lb for skylights only)</span>
+                    </label>
+                    <span class="d-block small ms-4">
+                        All glazed openings are protected, at a minimum, with impact-resistant coverings or products
+                        listed as wind-borne-debris protection devices in the product-approval system of Florida or
+                        Miami-Dade County and meet <em>one</em> of the following for “Cyclic Pressure and Large
+                        Missile Impact” (Level A in the table above):
+                    </span>
+                    <ul class="small ms-5 mb-1">
+                        <li>Miami-Dade County PA 201, 202, and 203</li>
+                        <li>Florida Building Code Testing Application Standard (TAS) 201, 202, and 203</li>
+                        <li>American Society for Testing and Materials (ASTM) E 1886 and ASTM E 1996</li>
+                        <li>Southern Standards Technical Document (SSTD) 12</li>
+                        <li>For Skylights only: ASTM E 1886 and ASTM E 1996</li>
+                        <li>For Garage Doors only: ANSI/DASMA 115</li>
+                    </ul>
+                </div>
+
+                <!-- A sub-choices -->
+                <ul class="list-unstyled ms-5">
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtA1" name="openProtA">
+                        <label class="form-check-label" for="openProtA1">
+                            <strong>A&nbsp;1.</strong> All non-glazed openings classified as A in the table above, or no
+                            non-glazed openings exist
+                        </label>
+                    </li>
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtA2" name="openProtA">
+                        <label class="form-check-label" for="openProtA2">
+                            <strong>A&nbsp;2.</strong> One or more non-glazed openings classified as Level D in the
+                            table above, and no
+                            non-glazed openings classified as Level B, C, N, or X
+                        </label>
+                    </li>
+                    <li class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="openProtA3" name="openProtA">
+                        <label class="form-check-label" for="openProtA3">
+                            <strong>A&nbsp;3.</strong> One or more non-glazed openings is classified as Level B, C, N,
+                            or X in the table above
+                        </label>
+                    </li>
+                </ul>
+
+
+                <!-- ⬇️ B. Exterior Opening Protection – Large-Missile 4- to 8-lb (2-4.5 lb skylights) -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="openProtB" name="openProt">
+                    <label class="form-check-label fw-bold" for="openProtB">
+                        B. Exterior Opening Protection &mdash; Cyclic Pressure and 4&nbsp;to&nbsp;8-lb
+                        Large Missile <span class="small">(2 – 4.5&nbsp;lb for skylights only)</span><br>
+                    </label>
+                    <span class="d-block small ms-4">
+                        All glazed openings are protected, at a minimum, with impact-resistant
+                        coverings/products listed as wind-borne-debris protection devices in the product
+                        approval system of Florida or Miami-Dade and meet <em>one</em> of the following
+                        for “Cyclic Pressure and Large Missile Impact” (Level B in the table above):
+                    </span>
+                    <ul class="small ms-5 mb-1">
+                        <li>ASTM E 1886 and ASTM E 1996 (Large Missile – 4.5 lb)</li>
+                        <li>SSTD 12 (Large Missile – 4 to 8 lb)</li>
+                        <li>For Skylights only: ASTM E 1886 and ASTM E 1996 (Large Missile – 2 to 4.5 lb)</li>
+                    </ul>
+                </div>
+
+                <!-- B sub-choices -->
+                <ul class="list-unstyled ms-5">
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtB1" name="openProtB">
+                        <label class="form-check-label" for="openProtB1">
+                            <strong>B&nbsp;1.</strong> All non-glazed openings classified as A or B in the table above,
+                            or no non-glazed openings exist
+                        </label>
+                    </li>
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtB2" name="openProtB">
+                        <label class="form-check-label" for="openProtB2">
+                            <strong>B&nbsp;2.</strong> One or more non-glazed openings classified as Level D in the
+                            table above, and no non-glazed openings classified as Level C, N, or X
+                        </label>
+                    </li>
+                    <li class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="openProtB3" name="openProtB">
+                        <label class="form-check-label" for="openProtB3">
+                            <strong>B&nbsp;3.</strong> One or more non-glazed openings is classified as Level C, N, or X
+                            in the table above
+                        </label>
+                    </li>
+                </ul>
+
+                <!-- ⬇️ C. Exterior Opening Protection – Wood Structural Panels (FBC 2007) -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="openProtC" name="openProt">
+                    <label class="form-check-label fw-bold" for="openProtC">
+                        C. Exterior Opening Protection &mdash; Wood Structural Panels meeting FBC 2007<br>
+                    </label>
+                    <span class="d-block small ms-4">
+                        All glazed openings are covered with plywood/OSB meeting Table 1609.1.2 of FBC 2007 (Level C in
+                        the table above).
+                    </span>
+                </div>
+
+                <!-- C sub-choices -->
+                <ul class="list-unstyled ms-5">
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtC1" name="openProtC">
+                        <label class="form-check-label" for="openProtC1">
+                            <strong>C&nbsp;1.</strong> All non-glazed openings classified as A, B, or C in the table
+                            above, or no non-glazed openings exist
+                        </label>
+                    </li>
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtC2" name="openProtC">
+                        <label class="form-check-label" for="openProtC2">
+                            <strong>C&nbsp;2.</strong> One or more non-glazed openings classified as Level D in the
+                            table above, and no non-glazed openings classified as Level N or X
+                        </label>
+                    </li>
+                    <li class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="openProtC3" name="openProtC">
+                        <label class="form-check-label" for="openProtC3">
+                            <strong>C&nbsp;3.</strong> One or more non-glazed openings is classified as Level N or X in
+                            the table above
+                        </label>
+                    </li>
+                </ul>
+
+                <!-- ⬇️ N. Exterior Opening Protection – Unverified (no documentation) -->
+                <div class="form-check mb-2">
+                    <input class="form-check-input" type="checkbox" id="openProtN" name="openProt">
+                    <label class="form-check-label fw-bold" for="openProtN">
+                        N. Exterior Opening Protection <span class="small">(unverified shutter systems with no
+                            documentation)</span>
+                    </label>
+                    <span class="d-block small ms-4">
+                        All glazed openings are protected with coverings that <em>do not</em> meet the requirements of
+                        A, B, or C,
+                        or appear to meet A/B but lack documentation of compliance (Level N in the table above).
+                    </span>
+                </div>
+
+                <!-- N sub-choices -->
+                <ul class="list-unstyled ms-5">
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtN1" name="openProtN">
+                        <label class="form-check-label" for="openProtN1">
+                            <strong>N&nbsp;1.</strong> All non-glazed openings classified as Level A, B, C, or N in the
+                            table above, or no non-glazed openings exist
+                        </label>
+                    </li>
+                    <li class="form-check mb-1">
+                        <input class="form-check-input" type="checkbox" id="openProtN2" name="openProtN">
+                        <label class="form-check-label" for="openProtN2">
+                            <strong>N&nbsp;2.</strong> One or more non-glazed openings classified as Level D in the
+                            table above, and no non-glazed openings classified as Level X
+                        </label>
+                    </li>
+                    <li class="form-check mb-2">
+                        <input class="form-check-input" type="checkbox" id="openProtN3" name="openProtN">
+                        <label class="form-check-label" for="openProtN3">
+                            <strong>N&nbsp;3.</strong> One or more non-glazed openings is classified as Level X in the
+                            table above
+                        </label>
+                    </li>
+                </ul>
+
+                <!-- ⬇️ X. None or Some Glazed Openings -->
+                <div class="form-check mb-2 ms-1">
+                    <input class="form-check-input" type="checkbox" id="openProtX" name="openProt">
+                    <label class="form-check-label fw-bold" for="openProtX">
+                        X. None or Some Glazed Openings &mdash; one or more glazed openings classified as Level X in the
+                        table above
+                    </label>
+                </div>
+
+            </div>
+            <!-- Inspector Certification (read-only, table layout) -->
+            <div class="border p-0 mb-4">
+                <h5 class="text-center fw-bold fst-italic mb-0 p-1">
+                    MITIGATION INSPECTIONS MUST BE CERTIFIED BY A QUALIFIED INSPECTOR.
+                </h5>
+                <p class="text-center small mb-2">
+                    Section&nbsp;627.711(2), Florida Statutes, provides a listing of individuals who may sign this form.
+                </p>
+
+                <table class="table table-sm table-bordered m-0">
+                    <tbody>
+                        <!-- Row 1 headers -->
+                        <tr class="align-middle">
+                            <th class="bg-light" style="width:34%">Qualified&nbsp;Inspector&nbsp;Name</th>
+                            <th class="bg-light" style="width:33%">License&nbsp;Type</th>
+                            <th class="bg-light" style="width:33%">License&nbsp;or&nbsp;Certificate&nbsp;#</th>
+                        </tr>
+
+                        <!-- Row 1 values -->
+                        <tr>
+                            <td class="bg-light">Benjamin Hodges</td>
+                            <td class="bg-light">Home&nbsp;Inspector</td>
+                            <td class="bg-light">HI22086</td>
+                        </tr>
+
+                        <!-- Row 2 headers -->
+                        <tr class="align-middle">
+                            <th class="bg-light">Inspection&nbsp;Company</th>
+                            <th class="bg-light" colspan="2">Phone</th>
+                        </tr>
+
+                        <!-- Row 2 values -->
+                        <tr>
+                            <td class="bg-light">Sawgrass&nbsp;Home&nbsp;Inspection</td>
+                            <td class="bg-light" colspan="2">813-488-9869</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Qualified-Inspector License Type (read-only) -->
+            <div class="border p-0 mb-4">
+                <h5 class="fw-bold mb-2">
+                    Qualified Inspector — I hold an active license as a: <span class="fst-italic">(check one)</span>
+                </h5>
+
+                <style>
+                    /* Prevent any clicks from changing the checkbox state */
+                    .readonly-chk {
+                        pointer-events: none;
+                    }
+                </style>
+
+                <div class="form-check mb-1">
+                    <input class="form-check-input readonly-chk" type="checkbox" id="licHI" checked>
+                    <label class="form-check-label" for="licHI">
+                        Home inspector licensed under Section&nbsp;468.8314, Florida Statutes who has completed
+                        the statutory number of hours of hurricane-mitigation training approved by the
+                        Construction Industry Licensing Board and completion of a proficiency exam.
+                    </label>
+                </div>
+
+                <div class="form-check mb-1">
+                    <input class="form-check-input readonly-chk" type="checkbox" id="licBCI">
+                    <label class="form-check-label" for="licBCI">
+                        Building code inspector certified under Section&nbsp;468.607, Florida Statutes.
+                    </label>
+                </div>
+
+                <div class="form-check mb-1">
+                    <input class="form-check-input readonly-chk" type="checkbox" id="licContractor">
+                    <label class="form-check-label" for="licContractor">
+                        General, building, or residential contractor licensed under Section&nbsp;489.111, Florida
+                        Statutes.
+                    </label>
+                </div>
+
+                <div class="form-check mb-1">
+                    <input class="form-check-input readonly-chk" type="checkbox" id="licPE">
+                    <label class="form-check-label" for="licPE">
+                        Professional engineer licensed under Section&nbsp;471.015, Florida Statutes.
+                    </label>
+                </div>
+
+                <div class="form-check mb-1">
+                    <input class="form-check-input readonly-chk" type="checkbox" id="licArchitect">
+                    <label class="form-check-label" for="licArchitect">
+                        Professional architect licensed under Section&nbsp;481.213, Florida Statutes.
+                    </label>
+                </div>
+
+                <div class="form-check">
+                    <input class="form-check-input readonly-chk" type="checkbox" id="licOther">
+                    <label class="form-check-label" for="licOther">
+                        Any other individual or entity recognized by the insurer as possessing the necessary
+                        qualifications to properly complete a uniform mitigation-verification form pursuant to
+                        Section&nbsp;627.711(2), Florida Statutes.
+                    </label>
+                </div>
+            </div>
+
+            <!--  📄 Certification & Signatures  -->
+            <div class="border p-3 mb-4 small">
+
+                <!-- Legal paragraph -->
+                <p class="mb-2">
+                    Individuals other than licensed contractors licensed under Section&nbsp;489.111, Florida Statutes,
+                    or professional
+                    engineers licensed under Section&nbsp;471.015, Florida Statutes, must inspect the structures
+                    personally and not
+                    through employees or other persons. Licensees under §471.015 or §489.111 may authorize a direct
+                    employee who
+                    possesses the requisite skill, knowledge, and experience to conduct a mitigation verification
+                    inspection.
+                </p>
+
+                <!-- I, [name] am a qualified inspector... -->
+                <div class="mb-2">
+                    I,&nbsp;
+                    <span class="fw-bold">Benjamin&nbsp;Hodges</span>,&nbsp;am a qualified inspector and I personally
+                    performed the inspection&nbsp;<span class="fst-italic">(or)</span>&nbsp;had my employee&nbsp;
+
+                    <!-- 👇 editable text-box instead of blank span -->
+                    <input type="text" id="employeeInspector" class="form-control form-control-sm d-inline-block mx-1"
+                        style="width:220px;">
+
+                    &nbsp;perform the inspection and I agree to be responsible for his/her work.
+                </div>
+
+
+                <!-- Signature row -->
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-8">
+                        <label class="form-label mb-0"><strong>Qualified Inspector Signature:</strong></label><br>
+
+                        <!-- Signature image (read-only) -->
+                        <img src="data:image/png;base64,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"
+                            alt="Benjamin Hodges signature"
+                            style="max-width:320px; max-height:120px; border:1px solid #ccc; object-fit:contain;">
+
+                        <!-- Optional: fallback typed signature (shown if image fails) -->
+                        <noscript>
+                            <span style="font-family:'Brush Script MT',cursive; font-size:1.5rem;">
+                                Benjamin Hodges
+                            </span>
+                        </noscript>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label mb-0"><strong>Date:</strong></label><br>
+                        <input type="date" class="form-control-plaintext" id="inspectorSignatureDate">
+                    </div>
+                </div>
+
+                <p class="mb-3">
+                    An individual or entity who knowingly or through gross negligence provides a false or fraudulent
+                    mitigation
+                    verification form is subject to investigation by the Florida Division of Insurance Fraud and may be
+                    subject to
+                    administrative action by the appropriate licensing agency or to criminal prosecution
+                    (§627.711(4)(f), Florida
+                    Statutes). The Qualified Inspector who certifies this form shall be directly liable for the
+                    misconduct of employees
+                    as if the authorized mitigation inspector personally performed the inspection.
+                </p>
+
+                <!-- Homeowner acknowledgement -->
+                <div class="border p-2 mb-2">
+                    <p class="mb-1 fw-bold">Homeowner to complete:</p>
+                    <p class="mb-1">
+                        I certify that the named Qualified Inspector or his or her employee did perform an inspection of
+                        the residence
+                        identified on this form and that proof of identification was provided to me or my Authorized
+                        Representative.
+                    </p>
+
+                    <div class="row g-3">
+                        <div class="col-md-8">
+                            <label class="form-label mb-0"><strong>Signature:</strong></label>
+                            <span class="border-bottom d-inline-block" style="min-width:260px;">&nbsp;</span>
+                        </div>
+                        <div class="col-md-4">
+                            <label class="form-label mb-0"><strong>Date:</strong></label>
+                            <input type="date" class="form-control-plaintext" id="homeOwnerSignatureDate">
+                        </div>
+                    </div>
+                </div>
+
+                <p class="mb-0">
+                    An individual or entity who knowingly provides or utters a false or fraudulent mitigation
+                    verification form with the
+                    intent to obtain or receive a discount on an insurance premium to which the individual or entity is
+                    not entitled
+                    commits a misdemeanor of the first degree. (§627.711(7), Florida Statutes)
+                </p>
+            </div>
+    </form>
+
+    <div class="mb-4">
+        <label for="imageUpload" class="form-label fw-semibold">
+            Attach photos&nbsp;<span class="text-muted">(up to 4 per page)</span>
+        </label>
+
+        <input class="form-control" type="file" id="imageUpload" accept="image/png, image/jpeg" multiple />
+    </div>
+
+    <div class="d-grid">
+        <button type="submit" class="btn btn-primary btn-lg w-100" id="download-pdf">
+            Download PDF
+        </button>
+    </div>
+
+    </div>
+
+
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="assets/js/index.js"></script>
+</body>
+
+</html>
