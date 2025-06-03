@@ -12,7 +12,7 @@
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
-
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
 </head>
 
 <body data-new-gr-c-s-check-loaded="8.912.0" data-gr-ext-installed="">
@@ -22,22 +22,6 @@
 
             <!-- Inspection Date -->
             <section class="border p-3 mb-4">
-                <div class="mb-3">
-                    <label for="inspectorInitials" class="form-label">Inspector Initials:</label>
-                    <input type="text" class="form-control" id="inspectorInitials">
-                </div>
-                <div class="mb-3">
-                    <label for="propertyAddress" class="form-label">Property Address:</label>
-                    <input type="text" class="form-control" id="propertyAddress">
-                </div>
-                <div class="mb-3">
-                    <label for="preparedFor" class="form-label">Prepared For:</label>
-                    <input type="text" class="form-control" id="preparedFor">
-                </div>
-                <div class="mb-3">
-                    <label for="forAddress" class="form-label">For Address:</label>
-                    <input type="text" class="form-control" id="forAddress">
-                </div>
                 <div class="mb-3">
                     <label for="date" class="form-label">Date:</label>
                     <input type="date" class="form-control" id="date">
@@ -51,11 +35,6 @@
                 <div class="mb-3">
                     <label class="form-label" for="ownerName">Owner Name</label>
                     <input type="text" id="ownerName" class="form-control" />
-                </div>
-
-                <div class="mb-3">
-                    <label class="form-label" for="contactPerson">Contact Person</label>
-                    <input type="text" id="contactPerson" class="form-control" />
                 </div>
 
                 <div class="mb-3">
@@ -85,28 +64,8 @@
                         <label class="form-label" for="ownerCounty">County</label>
                         <input type="text" id="ownerCounty" class="form-control" />
                     </div>
-                    <div class="col-md-4">
-                        <label class="form-label" for="homePhone">Home Phone</label>
-                        <input type="text" id="homePhone" class="form-control" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label" for="workPhone">Work Phone</label>
-                        <input type="text" id="workPhone" class="form-control" />
-                    </div>
-                    <div class="col-md-4">
-                        <label class="form-label" for="cellPhone">Cell Phone</label>
-                        <input type="text" id="cellPhone" class="form-control" />
-                    </div>
                 </div>
                 <div class="row g-3">
-                    <div class="col-md-6">
-                        <label class="form-label" for="ownerInsurance">Insurance Company</label>
-                        <input type="text" id="ownerInsurance" class="form-control" />
-                    </div>
-                    <div class="col-md-6">
-                        <label class="form-label" for="ownerPolicy">Policy #</label>
-                        <input type="text" id="ownerPolicy" class="form-control" />
-                    </div>
                     <div class="col-md-6">
                         <label class="form-label" for="homeYearBuilt">Year of Home</label>
                         <input type="text" id="homeYearBuilt" class="form-control" />
@@ -773,6 +732,7 @@
                         <thead class="table-light">
                             <tr>
                                 <th rowspan="2" class="align-middle">Level</th>
+                                <th rowspan="2" class="align-middle">Description</th>
                                 <th colspan="4">Glazed Openings</th>
                                 <th colspan="2">Non-Glazed Openings</th>
                             </tr>
@@ -800,6 +760,7 @@
                             <!-- N/A -->
                             <tr>
                                 <th scope="row">N/A</th>
+                                <td>There are no openings of this type on the structure</td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="naW"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="naGd"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="naSky"></td>
@@ -811,6 +772,8 @@
                             <!-- A -->
                             <tr>
                                 <th scope="row">A</th>
+                                <td>Verified cyclic pressure & large missile (9 lb for windows doors/4.5 lb for
+                                    skylights)</td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="aW"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="aGd"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="aSky"></td>
@@ -822,6 +785,8 @@
                             <!-- B -->
                             <tr>
                                 <th scope="row">B</th>
+                                <td>Verified cyclic pressure & large missile (4‐8 lb for windows doors/2 lb for
+                                    skylights</td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="bW"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="bGd"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="bSky"></td>
@@ -833,6 +798,7 @@
                             <!-- C -->
                             <tr>
                                 <th scope="row">C</th>
+                                <td>Verified plywood/OSB meeting Table 1609.1.2 of the FBC 2007</td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="cW"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="cGd"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="cSky"></td>
@@ -844,6 +810,8 @@
                             <!-- D -->
                             <tr>
                                 <th scope="row">D</th>
+                                <td>Verified Non‐Glazed Entry or Garage doors indicating compliance with ASTM E
+                                    330, ANSI/DASMA 108, or PA/TAS 202 for wind pressure resistance</td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="dW"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="dGd"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="dSky"></td>
@@ -855,29 +823,35 @@
                             <!-- N -->
                             <tr>
                                 <th scope="row">N</th>
+                                <td>Opening Protection products that appear to be A or B but are not
+                                    verified
+                                    <hr class="my-2">
+                                    Other protective coverings that cannot be identified as A, B, or C
+                                </td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="nW1">
-                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nW2">
+                                    <hr class="my-2"><input type="checkbox" class="form-check-input op-chk" id="nW2">
                                 </td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="nGd1">
-                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nGd2">
+                                    <hr class="my-2"><input type="checkbox" class="form-check-input op-chk" id="nGd2">
                                 </td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="nSky1">
-                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nSky2">
+                                    <hr class="my-2"><input type="checkbox" class="form-check-input op-chk" id="nSky2">
                                 </td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="nGb1">
-                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nGb2">
+                                    <hr class="my-2"><input type="checkbox" class="form-check-input op-chk" id="nGb2">
                                 </td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="nEd1">
-                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nEd2">
+                                    <hr class="my-2"><input type="checkbox" class="form-check-input op-chk" id="nEd2">
                                 </td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="nNgd1">
-                                    <p></p><input type="checkbox" class="form-check-input op-chk" id="nNgd2">
+                                    <hr class="my-2"><input type="checkbox" class="form-check-input op-chk" id="nNgd2">
                                 </td>
                             </tr>
 
                             <!-- X -->
                             <tr>
                                 <th scope="row">X</th>
+                                <td>No Windborne Debris Protection</td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="xW"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="xGd"></td>
                                 <td><input type="checkbox" class="form-check-input op-chk" id="xSky"></td>
@@ -1075,108 +1049,8 @@
                 </div>
 
             </div>
-            <!-- Inspector Certification (read-only, table layout) -->
-            <div class="border p-0 mb-4">
-                <h5 class="text-center fw-bold fst-italic mb-0 p-1">
-                    MITIGATION INSPECTIONS MUST BE CERTIFIED BY A QUALIFIED INSPECTOR.
-                </h5>
-                <p class="text-center small mb-2">
-                    Section&nbsp;627.711(2), Florida Statutes, provides a listing of individuals who may sign this form.
-                </p>
 
-                <table class="table table-sm table-bordered m-0">
-                    <tbody>
-                        <!-- Row 1 headers -->
-                        <tr class="align-middle">
-                            <th class="bg-light" style="width:34%">Qualified&nbsp;Inspector&nbsp;Name</th>
-                            <th class="bg-light" style="width:33%">License&nbsp;Type</th>
-                            <th class="bg-light" style="width:33%">License&nbsp;or&nbsp;Certificate&nbsp;#</th>
-                        </tr>
-
-                        <!-- Row 1 values -->
-                        <tr>
-                            <td class="bg-light">Benjamin Hodges</td>
-                            <td class="bg-light">Home&nbsp;Inspector</td>
-                            <td class="bg-light">HI22086</td>
-                        </tr>
-
-                        <!-- Row 2 headers -->
-                        <tr class="align-middle">
-                            <th class="bg-light">Inspection&nbsp;Company</th>
-                            <th class="bg-light" colspan="2">Phone</th>
-                        </tr>
-
-                        <!-- Row 2 values -->
-                        <tr>
-                            <td class="bg-light">Sawgrass&nbsp;Home&nbsp;Inspection</td>
-                            <td class="bg-light" colspan="2">813-488-9869</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
-
-            <!-- Qualified-Inspector License Type (read-only) -->
-            <div class="border p-0 mb-4">
-                <h5 class="fw-bold mb-2">
-                    Qualified Inspector — I hold an active license as a: <span class="fst-italic">(check one)</span>
-                </h5>
-
-                <style>
-                    /* Prevent any clicks from changing the checkbox state */
-                    .readonly-chk {
-                        pointer-events: none;
-                    }
-                </style>
-
-                <div class="form-check mb-1">
-                    <input class="form-check-input readonly-chk" type="checkbox" id="licHI" checked>
-                    <label class="form-check-label" for="licHI">
-                        Home inspector licensed under Section&nbsp;468.8314, Florida Statutes who has completed
-                        the statutory number of hours of hurricane-mitigation training approved by the
-                        Construction Industry Licensing Board and completion of a proficiency exam.
-                    </label>
-                </div>
-
-                <div class="form-check mb-1">
-                    <input class="form-check-input readonly-chk" type="checkbox" id="licBCI">
-                    <label class="form-check-label" for="licBCI">
-                        Building code inspector certified under Section&nbsp;468.607, Florida Statutes.
-                    </label>
-                </div>
-
-                <div class="form-check mb-1">
-                    <input class="form-check-input readonly-chk" type="checkbox" id="licContractor">
-                    <label class="form-check-label" for="licContractor">
-                        General, building, or residential contractor licensed under Section&nbsp;489.111, Florida
-                        Statutes.
-                    </label>
-                </div>
-
-                <div class="form-check mb-1">
-                    <input class="form-check-input readonly-chk" type="checkbox" id="licPE">
-                    <label class="form-check-label" for="licPE">
-                        Professional engineer licensed under Section&nbsp;471.015, Florida Statutes.
-                    </label>
-                </div>
-
-                <div class="form-check mb-1">
-                    <input class="form-check-input readonly-chk" type="checkbox" id="licArchitect">
-                    <label class="form-check-label" for="licArchitect">
-                        Professional architect licensed under Section&nbsp;481.213, Florida Statutes.
-                    </label>
-                </div>
-
-                <div class="form-check">
-                    <input class="form-check-input readonly-chk" type="checkbox" id="licOther">
-                    <label class="form-check-label" for="licOther">
-                        Any other individual or entity recognized by the insurer as possessing the necessary
-                        qualifications to properly complete a uniform mitigation-verification form pursuant to
-                        Section&nbsp;627.711(2), Florida Statutes.
-                    </label>
-                </div>
-            </div>
-
-            <!--  📄 Certification & Signatures  -->
+            <!--  Certification & Signatures  -->
             <div class="border p-3 mb-4 small">
 
                 <!-- Legal paragraph -->

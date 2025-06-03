@@ -8,8 +8,6 @@
  * is an array, the HTML value will be written to every field in that array.
  **/
 const FIELD_MAP = {
-    preparedFor: "Prepared for",
-    forAddress: "For Address",
     date: "Date",
 
     inspectorInitials: [
@@ -19,7 +17,9 @@ const FIELD_MAP = {
         "Inspectors Initials_4",
     ],
 
-    propertyAddress: [
+    ownerAddress: [
+        "For Address",
+        "Address",
         "Property Address",
         "Property Address_2",
         "Property Address_3",
@@ -27,18 +27,17 @@ const FIELD_MAP = {
     ],
 
     inspectionDate: "Inspection Date",
-    ownerName: "Owner Name",
+
+    ownerName: [
+        "Owner Name",
+        "Prepared for",
+        "Contact Person"
+    ],
+
     email: "Email",
-    contactPerson: "Contact Person",
-    ownerAddress: "Address",
     ownerCity: "City",
     ownerZip: "Zip",
     ownerCounty: "County",
-    homePhone: "Home Phone",
-    workPhone: "Work Phone",
-    cellPhone: "Cell Phone",
-    ownerInsurance: "Insurance Company",
-    ownerPolicy: "Policy",
     homeYearBuilt: "Year of Home",
     homeStories: " of Stories",
 
@@ -252,6 +251,69 @@ async function fetchPdf(url) {
     return new Uint8Array(await res.arrayBuffer());
 }
 
+// Get the image's EXIF orientation
+// https://github.com/Hopding/pdf-lib/issues/1284
+// https://stackoverflow.com/a/32490603
+// Returns either the image orientation or -1 if none found
+function getImageOrientation(file) {
+    const view = new DataView(file);
+
+    const length = view.byteLength;
+    let offset = 2;
+
+    while (offset < length) {
+        if (view.getUint16(offset + 2, false) <= 8) return -1;
+        const marker = view.getUint16(offset, false);
+        offset += 2;
+
+        // If EXIF buffer segment exists find the orientation
+        if (marker == 0xffe1) {
+            if (view.getUint32((offset += 2), false) != 0x45786966) {
+                return -1;
+            }
+
+            const little = view.getUint16((offset += 6), false) == 0x4949;
+            offset += view.getUint32(offset + 4, little);
+            const tags = view.getUint16(offset, little);
+            offset += 2;
+            for (let i = 0; i < tags; i++) {
+                if (view.getUint16(offset + i * 12, little) == 0x0112) {
+                    return view.getUint16(offset + i * 12 + 8, little);
+                }
+            }
+        } else if ((marker & 0xff00) != 0xff00) {
+            break;
+        } else {
+            offset += view.getUint16(offset, false);
+        }
+    }
+    return -1;
+}
+
+// Get rotation in degrees from EXIF orientation
+// https://sirv.com/help/articles/rotate-photos-to-be-upright/#exif-orientation-values
+// x-mirrored: the image is flipped horizontallly
+// y-mirrored: the image is flipped vertically
+function getOrientationCorrection(orientation) {
+    switch (orientation) {
+        case 2:
+            return 0;
+        case 3:
+            return -180;
+        case 4:
+            return 180;
+        case 5:
+            return 90;
+        case 6:
+            return -90;
+        case 7:
+            return -90;
+        case 8:
+            return 90;
+        default:
+            return 0;
+    }
+}
 // Fills the PDF using current HTML-form values and returns a Uint8Array
 async function fillWindMitigation() {
     const templateBytes = await fetchPdf(WIND_MITIGATION_PDF_NAME);
@@ -282,46 +344,110 @@ async function fillWindMitigation() {
             writeValue(pdfName, value);
         }
     }
-    // 2. Now it’s safe to flatten
-    //form.flatten({ updateFieldAppearances: true });
-    const files = document.getElementById('imageUpload')?.files;
-    if (files && files.length) {
-        // Use size of first template page for consistency
-        const { width, height } = pdfDoc.getPage(0).getSize();
-        const margin = 20;
-        const imgWidth = (width - margin * 3) / 2;
-        const imgHeight = (height - margin * 3) / 2;
 
-        for (let i = 0; i < files.length; i += 4) {
-            const page = pdfDoc.addPage([width, height]);
-
-            for (let j = 0; j < 4 && i + j < files.length; j++) {
-                const file = files[i + j];
-                const bytes = await file.arrayBuffer();
-                let image;
-
-                try {
-                    image = file.type === 'image/png'
-                        ? await pdfDoc.embedPng(bytes)
-                        : await pdfDoc.embedJpg(bytes);
-                } catch (err) {
-                    console.error('PDF embed image failed: ', err);
-                    continue;
-                }
-
-                const col = j % 2;
-                const row = Math.floor(j / 2);
-                const x = margin + col * (imgWidth + margin);
-                const y = height - margin - imgHeight - row * (imgHeight + margin);
-
-                page.drawImage(image, { x, y, width: imgWidth, height: imgHeight });
-            }
-        }
-    }
-
+    await drawImages(pdfDoc);
     return pdfDoc.save();
 }
 
+async function drawImages(pdfDoc) {
+    const files = document.getElementById('imageUpload')?.files;
+
+    if (!files || files.length == 0) {
+        return
+    }
+    // Use size of first template page for consistency
+    const { width, height } = pdfDoc.getPage(0).getSize();
+    const margin = 20;
+    const imgWidth = (width - margin * 3) / 2;
+    const imgHeight = (height - margin * 3) / 2;
+
+    for (let i = 0; i < files.length; i += 4) {
+        const page = pdfDoc.addPage([width, height]);
+
+        for (let j = 0; j < 4 && i + j < files.length; j++) {
+            const file = files[i + j];
+            const imageBytes = await file.arrayBuffer();
+
+            let image;
+            try {
+                image = file.type === 'image/png'
+                    ? await pdfDoc.embedPng(imageBytes)
+                    : await pdfDoc.embedJpg(imageBytes);
+            } catch (err) {
+                alert(`Failed to embed image (Click 'OK' to skip this image)\n${err}`);
+                continue;
+            }
+
+            // Determine orientation from EXIF
+            const exifOrientation = await getImageOrientation(imageBytes);
+            const rotationDegrees = await getOrientationCorrection(exifOrientation);
+
+            // Compute grid cell
+            const col = j % 2;
+            const row = Math.floor(j / 2);
+
+            const xMargin = margin + col * (imgWidth + margin);
+            const yOffset = height - margin - row * (imgHeight + margin);
+
+            // Swap dimensions for rotated image
+            const correctedWidth = (rotationDegrees === 90 || rotationDegrees === -90) ? imgHeight : imgWidth;
+            const correctedHeight = (rotationDegrees === 90 || rotationDegrees === -90) ? imgWidth : imgHeight;
+
+            let xShift, yShift;
+
+            switch (exifOrientation) {
+                case 2:
+                    xShift = pageWidth - xMargin - correctedWidth;
+                    yShift = yOffset - correctedHeight;
+                    break;
+                case 3:
+                    xShift = xMargin + correctedWidth;
+                    yShift = yOffset;
+                    break;
+                case 4:
+                    xShift = pageWidth - xMargin;
+                    yShift = yOffset;
+                    break;
+                case 5:
+                    xShift = xMargin + correctedWidth;
+                    yShift = pageHeight - yOffset;
+                    break;
+                case 6:
+                    xShift = xMargin;
+                    yShift = yOffset;
+                    break;
+                case 7:
+                    xShift = xMargin;
+                    yShift = pageHeight - yOffset + correctedHeight;
+                    break;
+                case 8:
+                    xShift = xMargin + correctedWidth;
+                    yShift = yOffset - correctedHeight;
+                    break;
+                default: // orientation 1 or unknown
+                    xShift = xMargin;
+                    yShift = yOffset - correctedHeight;
+            }
+
+            page.drawImage(image, {
+                x: xShift,
+                y: yShift,
+                width: correctedWidth,
+                height: correctedHeight,
+                rotate: PDFLib.degrees(rotationDegrees),
+            });
+        }
+
+    }
+}
+
+addEventListener("load", () => {
+    const elements = document.querySelectorAll('#date, #inspectorSignatureDate')
+
+    elements.forEach((e) => {
+        e.valueAsDate = new Date()
+    });
+});
 
 // Download button handler – generates the filled PDF and triggers the download
 document.querySelector('#download-pdf').addEventListener('click', async (e) => {
