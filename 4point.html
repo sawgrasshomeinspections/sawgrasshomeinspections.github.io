@@ -1,0 +1,1025 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>4-Point Inspection Form</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/pdf-lib/dist/pdf-lib.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/exif-js"></script>
+</head>
+
+<body>
+    <form id="form" autocomplete="off">
+        <div class="container my-4">
+            <h2 class="text-center">4-Point Inspection Form</h2>
+
+            <!-- Insured/Applicant Information -->
+            <section class="border p-3 mb-4">
+                <h4>Insured / Applicant Information</h4>
+                <div class="row g-3">
+                    <div class="col-md-6">
+                        <label for="insuredName" class="form-label">Insured/Applicant Name</label>
+                        <input type="text" id="insuredName" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="policyNumber" class="form-label">Application / Policy #</label>
+                        <input type="text" id="policyNumber" class="form-control">
+                    </div>
+                    <div class="col-12">
+                        <label for="addressInspected" class="form-label">Address Inspected</label>
+                        <input type="text" id="addressInspected" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="yearBuilt" class="form-label">Actual Year Built</label>
+                        <input type="number" id="yearBuilt" class="form-control">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="dateInspected" class="form-label">Date Inspected</label>
+                        <input type="date" id="dateInspected" class="form-control">
+                    </div>
+                </div>
+            </section>
+
+            <!-- Electrical System -->
+            <section class="border p-3 mb-4">
+                <h4>Electrical System</h4>
+                <p class="small text-muted">
+                    Separate documentation of any single strand aluminum wiring remediation must be provided and
+                    certified by a licensed electrician.
+                </p>
+
+                <!-- Panels -->
+                <div class="row">
+                    <div class="col-md-6">
+                        <h5>Main Panel</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="mainPanelBreaker">
+                            <label class="form-check-label" for="mainPanelBreaker">Circuit breaker</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="mainPanelFuse">
+                            <label class="form-check-label" for="mainPanelFuse">Fuse</label>
+                        </div>
+                        <div class="mt-2 mb-2">
+                            <label for="mainTotalAmps" class="form-label">Total Amps:</label>
+                            <input type="text" id="mainTotalAmps" class="form-control form-control-sm">
+                        </div>
+                        <div>
+                            <label class="form-label">Is amperage sufficient for current usage?</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mainAmpsOK" id="mainAmpsYes"
+                                    value="yes">
+                                <label class="form-check-label" for="mainAmpsYes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="mainAmpsOK" id="mainAmpsNo"
+                                    value="no" data-bs-toggle="collapse" data-bs-target="#mainAmpsDetails"
+                                    aria-controls="mainAmpsDetails">
+                                <label class="form-check-label" for="mainAmpsNo">No (explain)</label>
+                            </div>
+                        </div>
+                        <div id="mainAmpsDetails" class="collapse mt-1">
+                            <textarea id="mainAmpsExplain" class="form-control form-control-sm" rows="2"
+                                placeholder="Explain…"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <h5>Second Panel</h5>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="secondPanelBreaker">
+                            <label class="form-check-label" for="secondPanelBreaker">Circuit breaker</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="checkbox" id="secondPanelFuse">
+                            <label class="form-check-label" for="secondPanelFuse">Fuse</label>
+                        </div>
+                        <div class="mt-2 mb-2">
+                            <label for="secondTotalAmps" class="form-label">Total Amps:</label>
+                            <input type="text" id="secondTotalAmps" class="form-control form-control-sm">
+                        </div>
+                        <div>
+                            <label class="form-label">Is amperage sufficient for current usage?</label>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="secondAmpsOK" id="secondAmpsYes"
+                                    value="yes">
+                                <label class="form-check-label" for="secondAmpsYes">Yes</label>
+                            </div>
+                            <div class="form-check form-check-inline">
+                                <input class="form-check-input" type="radio" name="secondAmpsOK" id="secondAmpsNo"
+                                    value="no" data-bs-toggle="collapse" data-bs-target="#secondAmpsDetails"
+                                    aria-controls="secondAmpsDetails">
+                                <label class="form-check-label" for="secondAmpsNo">No (explain)</label>
+                            </div>
+                        </div>
+                        <div id="secondAmpsDetails" class="collapse mt-1">
+                            <textarea id="secondAmpsExplain" class="form-control form-control-sm" rows="2"
+                                placeholder="Explain…"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Wiring / Remediation -->
+                <h5>Indicate presence of any of the following:</h5>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="clothWiring">
+                    <label class="form-check-label" for="clothWiring">Cloth wiring</label>
+                </div>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="knobTube">
+                    <label class="form-check-label" for="knobTube">Active knob and tube</label>
+                </div>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="branchCircuitAL" data-bs-toggle="collapse"
+                        data-bs-target="#branchALDetails" aria-controls="branchALDetails">
+                    <label class="form-check-label" for="branchCircuitAL">Branch circuit aluminum wiring
+                        (describe…)</label>
+                </div>
+                <div id="branchALDetails" class="collapse">
+                    <textarea id="branchCircuitALExplain" class="form-control form-control-sm mb-2" rows="2"
+                        placeholder="Describe usage/remediation…"></textarea>
+                    <div class="form-text fst-italic mb-2">
+                        * If single strand (aluminum branch) wiring, provide details of all remediation. Separate
+                        documentation must be provided.
+                    </div>
+                </div>
+                <div class="form-check mb-1">
+                    <input class="form-check-input" type="checkbox" id="copalumCrimp">
+                    <label class="form-check-label" for="copalumCrimp">Connections repaired via COPALUM crimp</label>
+                </div>
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="checkbox" id="alumiConn">
+                    <label class="form-check-label" for="alumiConn">Connections repaired via AlumiConn</label>
+                </div>
+
+                <!-- Hazards -->
+                <h5>Hazards Present</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="blowingFuses">
+                            <label class="form-check-label" for="blowingFuses">Blowing fuses</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="trippingBreakers">
+                            <label class="form-check-label" for="trippingBreakers">Tripping breakers</label>
+                        </div>
+                        <!-- add other left-column hazards here… -->
+                    </div>
+                    <div class="col-md-6">
+                        <div class="d-flex align-items-start mb-1">
+                            <div class="form-check">
+                                <input class="form-check-input" type="checkbox" id="otherHazard"
+                                    data-bs-toggle="collapse" data-bs-target="#otherHazardDetails"
+                                    aria-controls="otherHazardDetails">
+                                <label class="form-check-label" for="otherHazard">Other (explain)</label>
+                            </div>
+                            <div id="otherHazardDetails" class="collapse flex-grow-1 ms-2">
+                                <textarea id="otherHazardExplain" class="form-control form-control-sm" rows="2"
+                                    placeholder="Describe…"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- General Condition -->
+                <div class="mb-3">
+                    <label class="form-label">General condition of the electrical:</label>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="elecCondition" id="elecSatisfactory"
+                            value="satisfactory">
+                        <label class="form-check-label" for="elecSatisfactory">Satisfactory</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="elecCondition" id="elecUnsatisfactory"
+                            value="unsatisfactory" data-bs-toggle="collapse" data-bs-target="#elecConditionDetails"
+                            aria-controls="elecConditionDetails">
+                        <label class="form-check-label" for="elecUnsatisfactory">Unsatisfactory (explain)</label>
+                    </div>
+                    <div id="elecConditionDetails" class="collapse mt-2">
+                        <textarea id="elecConditionExplain" class="form-control form-control-sm" rows="2"
+                            placeholder="Explain…"></textarea>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Supplemental Info -->
+                <h5>Supplemental information</h5>
+                <div class="row gx-3">
+                    <div class="col-md-5">
+                        <label class="form-label fw-semibold">Main Panel</label>
+                        <input type="text" id="mainPanelAge" class="form-control form-control-sm mb-1"
+                            placeholder="Panel age">
+                        <input type="text" id="mainPanelUpdated" class="form-control form-control-sm mb-1"
+                            placeholder="Year last updated">
+                        <input type="text" id="mainPanelBrand" class="form-control form-control-sm"
+                            placeholder="Brand/Model">
+                    </div>
+                    <div class="col-md-6 offset-md-1">
+                        <label class="form-label fw-semibold">Second Panel</label>
+                        <input type="text" id="secondPanelAge" class="form-control form-control-sm mb-1"
+                            placeholder="Panel age">
+                        <input type="text" id="secondPanelUpdated" class="form-control form-control-sm mb-1"
+                            placeholder="Year last updated">
+                        <input type="text" id="secondPanelBrand" class="form-control form-control-sm"
+                            placeholder="Brand/Model">
+                    </div>
+                </div>
+            </section>
+
+            <hr>
+
+            <!-- HVAC System -->
+            <section class="border p-3 mb-4">
+                <h4>HVAC System</h4>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-3"><label class="form-label">Central AC:</label></div>
+                    <div class="col-md-9">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="centralAC" id="centralACYes" value="yes">
+                            <label class="form-check-label" for="centralACYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="centralAC" id="centralACNo" value="no">
+                            <label class="form-check-label" for="centralACNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-3"><label class="form-label">Central heat:</label></div>
+                    <div class="col-md-9">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="centralHeat" id="centralHeatYes"
+                                value="yes">
+                            <label class="form-check-label" for="centralHeatYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="centralHeat" id="centralHeatNo"
+                                value="no" data-bs-toggle="collapse" data-bs-target="#primaryHeatDetails"
+                                aria-controls="primaryHeatDetails">
+                            <label class="form-check-label" for="centralHeatNo">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="primaryHeatDetails" class="collapse mb-2 row align-items-center">
+                    <div class="col-md-3"><label class="form-label">Primary heat source & fuel type:</label></div>
+                    <div class="col-md-9">
+                        <input type="text" id="primaryHeatSource" class="form-control form-control-sm"
+                            placeholder="e.g., Gas furnace, Propane">
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-5">
+                        <label class="form-label">Systems in good working order?</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="hvacOK" id="hvacOKYes" value="yes">
+                            <label class="form-check-label" for="hvacOKYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="hvacOK" id="hvacOKNo" value="no"
+                                data-bs-toggle="collapse" data-bs-target="#hvacOKExplain" aria-controls="hvacOKExplain">
+                            <label class="form-check-label" for="hvacOKNo">No (explain)</label>
+                        </div>
+                    </div>
+                </div>
+                <div id="hvacOKExplain" class="collapse mb-2">
+                    <textarea id="hvacExplain" class="form-control form-control-sm" rows="2"
+                        placeholder="Explain issues…"></textarea>
+                </div>
+
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-5">
+                        <label for="lastHVACService" class="form-label">Date of last HVAC servicing/inspection:</label>
+                    </div>
+                    <div class="col-md-4">
+                        <input type="date" id="lastHVACService" class="form-control form-control-sm">
+                    </div>
+                </div>
+
+                <hr>
+
+                <h5>Hazards Present</h5>
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-6">
+                        <label class="form-label">Wood-burning stove or gas fireplace present?</label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="stovePresent" id="stovePresentYes"
+                                value="yes">
+                            <label class="form-check-label" for="stovePresentYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="stovePresent" id="stovePresentNo"
+                                value="no">
+                            <label class="form-check-label" for="stovePresentNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-6"><label class="form-label">Professionally installed?</label></div>
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="stoveInstalled" id="stoveInstalledYes"
+                                value="yes">
+                            <label class="form-check-label" for="stoveInstalledYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="stoveInstalled" id="stoveInstalledNo"
+                                value="no">
+                            <label class="form-check-label" for="stoveInstalledNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-6"><label class="form-label">Space heater used as primary source?</label></div>
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="spaceHeaterUsed" id="spaceHeaterYes"
+                                value="yes">
+                            <label class="form-check-label" for="spaceHeaterYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="spaceHeaterUsed" id="spaceHeaterNo"
+                                value="no">
+                            <label class="form-check-label" for="spaceHeaterNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-6"><label class="form-label">Is the source portable?</label></div>
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="heaterPortable" id="heaterPortableYes"
+                                value="yes">
+                            <label class="form-check-label" for="heaterPortableYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="heaterPortable" id="heaterPortableNo"
+                                value="no">
+                            <label class="form-check-label" for="heaterPortableNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Does the air handler/condensate line or drain pan show signs of blockage or leakage?
+                        </label>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="condensateLeak" id="condensateYes"
+                                value="yes">
+                            <label class="form-check-label" for="condensateYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="condensateLeak" id="condensateNo"
+                                value="no">
+                            <label class="form-check-label" for="condensateNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <h5>Supplemental Information</h5>
+                <div class="row gx-3">
+                    <div class="col-md-6">
+                        <label class="form-label">Age of system:</label>
+                        <input type="text" id="hvacAge" class="form-control form-control-sm" placeholder="Years">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Year last updated:</label>
+                        <input type="text" id="hvacUpdated" class="form-control form-control-sm" placeholder="YYYY">
+                    </div>
+                </div>
+                <p class="form-text mt-1">
+                    (Please attach photo(s) of HVAC equipment, including dated manufacturer’s plate)
+                </p>
+            </section>
+
+            <!-- Plumbing System -->
+            <section class="border p-3 mb-4">
+                <h4>Plumbing System</h4>
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-5"><label class="form-label">Temperature pressure relief valve present?</label>
+                    </div>
+                    <div class="col-md-7">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="tprValve" id="tprYes" value="yes">
+                            <label class="form-check-label" for="tprYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="tprValve" id="tprNo" value="no">
+                            <label class="form-check-label" for="tprNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-5"><label class="form-label">Any active leak?</label></div>
+                    <div class="col-md-7">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activeLeak" id="activeLeakYes"
+                                value="yes">
+                            <label class="form-check-label" for="activeLeakYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="activeLeak" id="activeLeakNo" value="no">
+                            <label class="form-check-label" for="activeLeakNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center mb-2">
+                    <div class="col-md-5"><label class="form-label">Any prior leak?</label></div>
+                    <div class="col-md-7">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="priorLeak" id="priorLeakYes" value="yes">
+                            <label class="form-check-label" for="priorLeakYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="priorLeak" id="priorLeakNo" value="no">
+                            <label class="form-check-label" for="priorLeakNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4"><label for="waterHeaterLocation" class="form-label">Water heater
+                            location:</label></div>
+                    <div class="col-md-8"><input type="text" id="waterHeaterLocation"
+                            class="form-control form-control-sm"></div>
+                </div>
+
+                <hr>
+
+                <h5 class="small mb-2">General condition of plumbing fixtures & connections:</h5>
+                <div class="table-responsive mb-3">
+                    <table class="table table-bordered table-md mb-0">
+                        <thead>
+                            <tr>
+                                <th>Fixture</th>
+                                <th class="text-center">Satisfactory</th>
+                                <th class="text-center">Unsatisfactory</th>
+                                <th class="text-center">N/A</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Dishwasher</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Refrigerator</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Washing machine</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Water heater</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Showers / Tubs</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Toilets</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Sinks</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Sump pump</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>Main shut off valve</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                            <tr>
+                                <td>All other visible</td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <textarea id="plumbingUnsatDetails" class="form-control form-control-sm mb-3" rows="2"
+                    placeholder="If unsatisfactory, provide comments/details…"></textarea>
+
+                <hr>
+
+                <h5 class="mt-4">Supplemental Information</h5>
+
+                <div class="row gx-3 mb-4">
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Age of Piping Supply System:</label>
+                        <input type="text" id="supplyAge" class="form-control form-control-sm mb-1" placeholder="Years">
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="supplyOriginal">
+                            <label class="form-check-label" for="supplyOriginal">Original to home</label>
+                        </div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="supplyComplete">
+                            <label class="form-check-label" for="supplyComplete">Completely re-piped</label>
+                        </div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="supplyPartial">
+                            <label class="form-check-label" for="supplyPartial">Partially re-piped</label>
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label fw-semibold">Age of Piping Drain System:</label>
+                        <input type="text" id="drainAge" class="form-control form-control-sm mb-1" placeholder="Years">
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="drainOriginal">
+                            <label class="form-check-label" for="drainOriginal">Original to home</label>
+                        </div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="drainComplete">
+                            <label class="form-check-label" for="drainComplete">Completely re-piped</label>
+                        </div>
+                        <div class="form-check"><input class="form-check-input" type="checkbox" id="drainPartial">
+                            <label class="form-check-label" for="drainPartial">Partially re-piped</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Age of water heater:</label>
+                    <input type="text" id="waterHeaterAge" class="form-control form-control-sm" placeholder="Years">
+                    <small class="form-text text-muted">(Provide year and extent of renovation in the comments
+                        below)</small>
+                    <textarea id="waterHeaterComments" class="form-control form-control-sm mt-1" rows="2"
+                        placeholder="Comments…"></textarea>
+                </div>
+
+                <hr>
+
+                <div class="mb-4">
+                    <label class="form-label fw-semibold">Type of pipes (check all that apply)</label>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="pipeCopper">
+                        <label class="form-check-label" for="pipeCopper">Copper</label>
+                    </div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="pipePVC">
+                        <label class="form-check-label" for="pipePVC">PVC/CPVC</label>
+                    </div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="pipeGalvanized">
+                        <label class="form-check-label" for="pipeGalvanized">Galvanized</label>
+                    </div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="pipeCast">
+                        <label class="form-check-label" for="pipeCast">Cast Iron</label>
+                    </div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="pipePoly">
+                        <label class="form-check-label" for="pipePoly">Polybutylene</label>
+                    </div>
+                    <div class="form-check"><input class="form-check-input" type="checkbox" id="pipeABS">
+                        <label class="form-check-label" for="pipeABS">ABS</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="pipePEX" data-bs-toggle="collapse"
+                            data-bs-target="#pipePEXDetails" aria-controls="pipePEXDetails">
+                        <label class="form-check-label" for="pipePEX">PEX</label>
+                    </div>
+                    <div id="pipePEXDetails" class="collapse ms-4 mb-2">
+                        <input type="text" id="pipePEXYear" class="form-control form-control-sm"
+                            placeholder="Year Installed">
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="pipeOther" data-bs-toggle="collapse"
+                            data-bs-target="#pipeOtherDetails" aria-controls="pipeOtherDetails">
+                        <label class="form-check-label" for="pipeOther">Other (specify)</label>
+                    </div>
+                    <div id="pipeOtherDetails" class="collapse ms-4 mt-1">
+                        <textarea id="pipeOtherTextarea" class="form-control form-control-sm" rows="3"
+                            placeholder="Specify other pipe type"></textarea>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Roof Section -->
+            <section class="border p-3 mb-4">
+                <h4>Roof <small class="text-muted">(…can replace Roof Inspection Form)</small></h4>
+                <hr>
+
+                <!-- Predominant Roof -->
+                <h5 class="mt-3">Predominant Roof</h5>
+                <div class="mb-3">
+                    <label class="form-label">Covering material:</label>
+                    <input type="text" id="predRoofMaterial" class="form-control form-control-sm mb-1">
+                    <label class="form-label">Roof age (years):</label>
+                    <input type="number" id="predRoofAge" class="form-control form-control-sm mb-1">
+                    <label class="form-label">Remaining useful life (years):</label>
+                    <input type="number" id="predRoofLife" class="form-control form-control-sm mb-1">
+                    <label class="form-label">Date of last roofing permit:</label>
+                    <input type="date" id="predLastPermit" class="form-control form-control-sm mb-1">
+                    <label class="form-label">Date of last update:</label>
+                    <input type="date" id="predLastUpdate" class="form-control form-control-sm">
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">If updated (check one):</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="predFullReplace">
+                        <label class="form-check-label" for="predFullReplace">Full replacement</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="predPartialReplace"
+                            data-bs-toggle="collapse" data-bs-target="#predPercentDetails"
+                            aria-controls="predPercentDetails">
+                        <label class="form-check-label" for="predPartialReplace">Partial replacement</label>
+                    </div>
+                    <div id="predPercentDetails" class="collapse mt-1">
+                        <label class="form-label">% of replacement:</label>
+                        <input type="number" id="predPercentReplace" class="form-control form-control-sm"
+                            placeholder="%">
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Overall condition:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="predConditionSat">
+                        <label class="form-check-label" for="predConditionSat">Satisfactory</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="predConditionUnsat"
+                            data-bs-toggle="collapse" data-bs-target="#predUnsatDetails"
+                            aria-controls="predUnsatDetails">
+                        <label class="form-check-label" for="predConditionUnsat">Unsatisfactory (explain below)</label>
+                    </div>
+                    <div id="predUnsatDetails" class="collapse mt-2">
+                        <textarea id="predUnsatExplain" class="form-control form-control-sm" rows="2"
+                            placeholder="Explain…"></textarea>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="mb-2">
+                    <label class="form-label">Any visible signs of damage / deterioration?<br>
+                        <small class="text-muted">(check all that apply and explain below)</small>
+                    </label>
+                    <div class="row gx-3">
+                        <div class="col-6">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="predCracking">
+                                <label class="form-check-label" for="predCracking">Cracking</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="predCupping">
+                                <label class="form-check-label" for="predCupping">Cupping / curling</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox"
+                                    id="predGranuleLoss">
+                                <label class="form-check-label" for="predGranuleLoss">Excessive granule loss</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox"
+                                    id="predExposedAsphalt">
+                                <label class="form-check-label" for="predExposedAsphalt">Exposed asphalt</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox"
+                                    id="predExposedFelt">
+                                <label class="form-check-label" for="predExposedFelt">Exposed felt</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox"
+                                    id="predMissingTabs">
+                                <label class="form-check-label" for="predMissingTabs">Missing/loose/cracked tabs or
+                                    tiles</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="predSoftSpots">
+                                <label class="form-check-label" for="predSoftSpots">Soft spots in decking</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="predHail">
+                                <label class="form-check-label" for="predHail">Visible hail damage</label>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea id="predDamageExplain" class="form-control form-control-sm mt-2" rows="2"
+                        placeholder="If checked, explain damage/deterioration…"></textarea>
+                </div>
+
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-4"><label class="form-label">Any visible signs of leaks?</label></div>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="predLeakYesNo" id="predLeakYes"
+                                value="yes" data-bs-toggle="collapse" data-bs-target="#predLeakExplain"
+                                aria-controls="predLeakExplain">
+                            <label class="form-check-label" for="predLeakYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="predLeakYesNo" id="predLeakNo"
+                                value="no">
+                            <label class="form-check-label" for="predLeakNo">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div id="predLeakExplain" class="collapse">
+                            <textarea id="predLeakDetails" class="form-control form-control-sm" rows="2"
+                                placeholder="If yes, explain leaks…"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4"><label class="form-label">Attic/underside of decking:</label></div>
+                    <div class="col-md-4">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="predAtticYesNo" id="predAtticYes"
+                                value="yes">
+                            <label class="form-check-label" for="predAtticYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="predAtticYesNo" id="predAtticNo"
+                                value="no">
+                            <label class="form-check-label" for="predAtticNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4"><label class="form-label">Interior ceilings:</label></div>
+                    <div class="col-md-4">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="predInteriorYesNo" id="predInteriorYes"
+                                value="yes">
+                            <label class="form-check-label" for="predInteriorYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="predInteriorYesNo" id="predInteriorNo"
+                                value="no">
+                            <label class="form-check-label" for="predInteriorNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <hr>
+
+                <!-- Secondary Roof -->
+                <h5 class="mt-4">Secondary Roof</h5>
+
+                <div class="mb-3">
+                    <label class="form-label">Covering material:</label>
+                    <input type="text" id="secRoofMaterial" class="form-control form-control-sm mb-1">
+
+                    <label class="form-label">Roof age (years):</label>
+                    <input type="number" id="secRoofAge" class="form-control form-control-sm mb-1">
+
+                    <label class="form-label">Remaining useful life (years):</label>
+                    <input type="number" id="secRoofLife" class="form-control form-control-sm mb-1">
+
+                    <label class="form-label">Date of last roofing permit:</label>
+                    <input type="date" id="secLastPermit" class="form-control form-control-sm mb-1">
+
+                    <label class="form-label">Date of last update:</label>
+                    <input type="date" id="secLastUpdate" class="form-control form-control-sm">
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">If updated (check one):</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="secFullReplace">
+                        <label class="form-check-label" for="secFullReplace">Full replacement</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="secPartialReplace" data-bs-toggle="collapse"
+                            data-bs-target="#secPercentDetails" aria-controls="secPercentDetails">
+                        <label class="form-check-label" for="secPartialReplace">Partial replacement</label>
+                    </div>
+                    <div id="secPercentDetails" class="collapse mt-1">
+                        <label class="form-label">% of replacement:</label>
+                        <input type="number" id="secPercentReplace" class="form-control form-control-sm"
+                            placeholder="%">
+                    </div>
+                </div>
+
+                <div class="mb-2">
+                    <label class="form-label">Overall condition:</label>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="secConditionSat">
+                        <label class="form-check-label" for="secConditionSat">Satisfactory</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="secConditionUnsat" data-bs-toggle="collapse"
+                            data-bs-target="#secUnsatDetails" aria-controls="secUnsatDetails">
+                        <label class="form-check-label" for="secConditionUnsat">Unsatisfactory (explain below)</label>
+                    </div>
+                    <div id="secUnsatDetails" class="collapse mt-2">
+                        <textarea id="secUnsatExplain" class="form-control form-control-sm" rows="2"
+                            placeholder="Explain…"></textarea>
+                    </div>
+                </div>
+
+                <hr>
+
+                <div class="mb-2">
+                    <label class="form-label">
+                        Any visible signs of damage / deterioration?<br>
+                        <small class="text-muted">(check all that apply and explain below)</small>
+                    </label>
+                    <div class="row gx-3">
+                        <div class="col-6">
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="secCracking">
+                                <label class="form-check-label" for="secCracking">Cracking</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="secCupping">
+                                <label class="form-check-label" for="secCupping">Cupping / curling</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="secGranuleLoss">
+                                <label class="form-check-label" for="secGranuleLoss">Excessive granule loss</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox"
+                                    id="secExposedAsphalt">
+                                <label class="form-check-label" for="secExposedAsphalt">Exposed asphalt</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="secExposedFelt">
+                                <label class="form-check-label" for="secExposedFelt">Exposed felt</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="secMissingTabs">
+                                <label class="form-check-label" for="secMissingTabs">Missing/loose/cracked tabs or
+                                    tiles</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="secSoftSpots">
+                                <label class="form-check-label" for="secSoftSpots">Soft spots in decking</label>
+                            </div>
+                            <div class="form-check"><input class="form-check-input" type="checkbox" id="secHail">
+                                <label class="form-check-label" for="secHail">Visible hail damage</label>
+                            </div>
+                        </div>
+                    </div>
+                    <textarea id="secDamageExplain" class="form-control form-control-sm mt-2" rows="2"
+                        placeholder="If checked, explain damage/deterioration…"></textarea>
+                </div>
+
+                <div class="row align-items-center mb-3">
+                    <div class="col-md-4"><label class="form-label">Any visible signs of leaks?</label></div>
+                    <div class="col-md-8">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="secLeakYesNo" id="secLeakYes" value="yes"
+                                data-bs-toggle="collapse" data-bs-target="#secLeakExplain"
+                                aria-controls="secLeakExplain">
+                            <label class="form-check-label" for="secLeakYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="secLeakYesNo" id="secLeakNo" value="no">
+                            <label class="form-check-label" for="secLeakNo">No</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mb-3">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-8">
+                        <div id="secLeakExplain" class="collapse">
+                            <textarea id="secLeakDetails" class="form-control form-control-sm" rows="2"
+                                placeholder="If yes, explain leaks…"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-3">
+                    <div class="col-md-4"><label class="form-label">Attic/underside of decking:</label></div>
+                    <div class="col-md-4">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="secAtticYesNo" id="secAtticYes"
+                                value="yes">
+                            <label class="form-check-label" for="secAtticYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="secAtticYesNo" id="secAtticNo"
+                                value="no">
+                            <label class="form-check-label" for="secAtticNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4"><label class="form-label">Interior ceilings:</label></div>
+                    <div class="col-md-4">
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="secInteriorYesNo" id="secInteriorYes"
+                                value="yes">
+                            <label class="form-check-label" for="secInteriorYes">Yes</label>
+                        </div>
+                        <div class="form-check form-check-inline">
+                            <input class="form-check-input" type="radio" name="secInteriorYesNo" id="secInteriorNo"
+                                value="no">
+                            <label class="form-check-label" for="secInteriorNo">No</label>
+                        </div>
+                    </div>
+                </div>
+
+
+            </section>
+
+            <hr>
+
+            <!-- Additional Comments & Certification -->
+            <section class="border p-3 mb-4">
+                <div class="mb-3">
+                    <label for="additionalComments" class="form-label fw-semibold">
+                        Additional Comments / Observations
+                        <small class="text-muted">(use additional pages if needed)</small>
+                    </label>
+                    <textarea id="additionalComments" class="form-control" rows="4"
+                        placeholder="Use additional pages…"></textarea>
+                </div>
+                <p class="small mb-3">
+                    All 4-Point Inspection Forms must be completed and signed by a verifiable Florida-licensed
+                    inspector.<br>
+                    <em>I certify that the above statements are true and correct.</em>
+                </p>
+                <div class="row g-3 mb-3">
+                    <div class="col-md-3">
+                        <label for="inspectorSignature" class="form-label">Inspector Signature</label>
+                        <input type="text" id="inspectorSignature" class="form-control form-control-sm"
+                            placeholder="Name">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inspectorTitle" class="form-label">Title</label>
+                        <input type="text" id="inspectorTitle" class="form-control form-control-sm" placeholder="Title">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="licenseNumber" class="form-label">License Number</label>
+                        <input type="text" id="licenseNumber" class="form-control form-control-sm" placeholder="Number">
+                    </div>
+                    <div class="col-md-3">
+                        <label for="inspectorDate" class="form-label">Date</label>
+                        <input type="date" id="inspectorDate" class="form-control form-control-sm">
+                    </div>
+                </div>
+                <div class="row g-3">
+                    <div class="col-md-4">
+                        <label for="companyName" class="form-label">Company Name</label>
+                        <input type="text" id="companyName" class="form-control form-control-sm" placeholder="Company">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="licenseType" class="form-label">License Type</label>
+                        <input type="text" id="licenseType" class="form-control form-control-sm" placeholder="Type">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="workPhone" class="form-label">Work Phone</label>
+                        <input type="tel" id="workPhone" class="form-control form-control-sm"
+                            placeholder="(   )   -    ">
+                    </div>
+                </div>
+            </section>
+        </div>
+    </form>
+
+    <!-- Photo Upload -->
+    <div class="container mb-4">
+        <label for="imageUpload" class="form-label">Attach photos <span class="text-muted">(min. requirements
+                apply)</span></label>
+        <input class="form-control" type="file" id="imageUpload" accept="image/png, image/jpeg" multiple>
+    </div>
+
+    <!-- Download Button -->
+    <div class="container mb-5">
+        <button type="submit" class="btn btn-primary btn-lg w-100" id="download-pdf">Download PDF</button>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="4point.js"></script>
+</body>
+
+</html>
