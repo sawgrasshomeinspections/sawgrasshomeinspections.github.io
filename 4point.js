@@ -7,6 +7,7 @@
  * to its corresponding field name inside the PDF template. For keys whose value
  * is an array, the HTML value will be written to every field in that array.
  **/
+
 const FIELD_MAP = {
     insuredName: "Text-eu88JHZNU9",
     policyNumber: "Text-xMlCBm_wKo",
@@ -456,4 +457,5 @@ document.querySelector('#download-pdf').addEventListener('click', async (e) => {
         alert('Something went wrong while creating the PDF. Please try again.');
     }
 });
+
 
