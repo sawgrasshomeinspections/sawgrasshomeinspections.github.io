@@ -323,8 +323,12 @@ async function fillWindMitigation() {
             writeValue(pdfName, value);
         }
     }
-
+    
     await drawImages(pdfDoc);
+
+    const newForm = pdfDoc.getForm();
+    newForm.flatten();
+
     return pdfDoc.save();
 }
 
@@ -452,3 +456,4 @@ document.querySelector('#download-pdf').addEventListener('click', async (e) => {
         alert('Something went wrong while creating the PDF. Please try again.');
     }
 });
+
