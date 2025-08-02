@@ -39,6 +39,10 @@
                         <label for="dateInspected" class="form-label">Date Inspected</label>
                         <input type="date" id="dateInspected" class="form-control">
                     </div>
+                    <div class="col-md-12">
+                        <label for="dateToday" class="form-label">Date</label>
+                        <input type="date" id="dateToday" class="form-control">
+                    </div>
                 </div>
             </section>
 
@@ -159,6 +163,7 @@
                 <!-- Hazards -->
                 <h5>Hazards Present</h5>
                 <div class="row">
+                    <!-- Left Column -->
                     <div class="col-md-6">
                         <div class="form-check mb-1">
                             <input class="form-check-input" type="checkbox" id="blowingFuses">
@@ -168,20 +173,58 @@
                             <input class="form-check-input" type="checkbox" id="trippingBreakers">
                             <label class="form-check-label" for="trippingBreakers">Tripping breakers</label>
                         </div>
-                        <!-- add other left-column hazards here… -->
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="emptySockets">
+                            <label class="form-check-label" for="emptySockets">Empty sockets</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="looseWiring">
+                            <label class="form-check-label" for="looseWiring">Loose wiring</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="improperGrounding">
+                            <label class="form-check-label" for="improperGrounding">Improper grounding</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="corrosion">
+                            <label class="form-check-label" for="corrosion">Corrosion</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="overFusing">
+                            <label class="form-check-label" for="overFusing">Over fusing</label>
+                        </div>
                     </div>
+
+                    <!-- Right Column -->
                     <div class="col-md-6">
-                        <div class="d-flex align-items-start mb-1">
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" id="otherHazard"
-                                    data-bs-toggle="collapse" data-bs-target="#otherHazardDetails"
-                                    aria-controls="otherHazardDetails">
-                                <label class="form-check-label" for="otherHazard">Other (explain)</label>
-                            </div>
-                            <div id="otherHazardDetails" class="collapse flex-grow-1 ms-2">
-                                <textarea id="otherHazardExplain" class="form-control form-control-sm" rows="2"
-                                    placeholder="Describe…"></textarea>
-                            </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="doubleTaps">
+                            <label class="form-check-label" for="doubleTaps">Double taps</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="exposedWiring">
+                            <label class="form-check-label" for="exposedWiring">Exposed wiring</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="unsafeWiring">
+                            <label class="form-check-label" for="unsafeWiring">Unsafe wiring</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="improperBreakerSize">
+                            <label class="form-check-label" for="improperBreakerSize">Improper breaker size</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="scorching">
+                            <label class="form-check-label" for="scorching">Scorching</label>
+                        </div>
+                        <div class="form-check mb-1">
+                            <input class="form-check-input" type="checkbox" id="otherHazard" data-bs-toggle="collapse"
+                                data-bs-target="#otherHazardDetails" aria-controls="otherHazardDetails">
+                            <label class="form-check-label" for="otherHazard">Other (explain)</label>
+                        </div>
+                        <div id="otherHazardDetails" class="collapse ms-4">
+                            <textarea id="otherHazardExplain" class="form-control form-control-sm mt-1" rows="2"
+                                placeholder="Describe…"></textarea>
                         </div>
                     </div>
                 </div>
@@ -222,7 +265,7 @@
                         <input type="text" id="mainPanelBrand" class="form-control form-control-sm"
                             placeholder="Brand/Model">
                     </div>
-                    <div class="col-md-6 offset-md-1">
+                    <div class="col-md-6 offset-md-1 mb-4">
                         <label class="form-label fw-semibold">Second Panel</label>
                         <input type="text" id="secondPanelAge" class="form-control form-control-sm mb-1"
                             placeholder="Panel age">
@@ -231,6 +274,65 @@
                         <input type="text" id="secondPanelBrand" class="form-control form-control-sm"
                             placeholder="Brand/Model">
                     </div>
+
+                    <hr>
+
+                    <div class="col-12">
+                        <h5>Wiring Type(s)</h5>
+                        <div class="row">
+                            <!-- Column 1 -->
+                            <div class="col-md-4">
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="copper">
+                                    <label class="form-check-label" for="copper">Copper</label>
+                                </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="singleStrandAl">
+                                    <label class="form-check-label" for="singleStrandAl">Single Strand AL</label>
+                                </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="multistrandAl">
+                                    <label class="form-check-label" for="multistrandAl">Multistrand AL</label>
+                                </div>
+                            </div>
+
+                            <!-- Column 2 -->
+                            <div class="col-md-4">
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="copperCladAl">
+                                    <label class="form-check-label" for="copperCladAl">Copper Clad AL</label>
+                                </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="clothKnobTube">
+                                    <label class="form-check-label" for="clothKnobTube">Cloth (Knob & Tube)</label>
+                                </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="clothJacketRubber">
+                                    <label class="form-check-label" for="clothJacketRubber">Cloth Jacket Rubber
+                                        Insulated</label>
+                                </div>
+                            </div>
+
+                            <!-- Column 3 -->
+                            <div class="col-md-4">
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="nmBxConduit">
+                                    <label class="form-check-label" for="nmBxConduit">NM, BX or Conduit</label>
+                                </div>
+                                <div class="form-check mb-1">
+                                    <input class="form-check-input" type="checkbox" id="otherWiring"
+                                        data-bs-toggle="collapse" data-bs-target="#otherWiringDetails"
+                                        aria-controls="otherWiringDetails">
+                                    <label class="form-check-label" for="otherWiring">Other</label>
+                                </div>
+                                <div class="collapse" id="otherWiringDetails">
+                                    <input type="text" class="form-control form-control-sm mt-1" id="otherWiringText"
+                                        placeholder="Specify other wiring type...">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                 </div>
             </section>
 
@@ -466,7 +568,8 @@
                     <div class="col-md-4"><label for="waterHeaterLocation" class="form-label">Water heater
                             location:</label></div>
                     <div class="col-md-8"><input type="text" id="waterHeaterLocation"
-                            class="form-control form-control-sm"></div>
+                            class="form-control form-control-sm">
+                    </div>
                 </div>
 
                 <hr>
@@ -485,67 +588,68 @@
                         <tbody>
                             <tr>
                                 <td>Dishwasher</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="dishwasherSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="dishwasherUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="dishwasherNa"></td>
                             </tr>
                             <tr>
                                 <td>Refrigerator</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="refrigeratorSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="refrigeratorUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="refrigeratorNa"></td>
                             </tr>
                             <tr>
                                 <td>Washing machine</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="washingmachineSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="washingmachineUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="washingmachineNa"></td>
                             </tr>
                             <tr>
                                 <td>Water heater</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="waterheaterSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="waterheaterUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="waterheaterNa"></td>
                             </tr>
                             <tr>
                                 <td>Showers / Tubs</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="showerstubsSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="showerstubsUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="showerstubsNa"></td>
                             </tr>
                             <tr>
                                 <td>Toilets</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="toiletsSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="toiletsUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="toiletsNa"></td>
                             </tr>
                             <tr>
                                 <td>Sinks</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="sinksSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="sinksUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="sinksNa"></td>
                             </tr>
                             <tr>
                                 <td>Sump pump</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="sumppumpSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="sumppumpUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="sumppumpNa"></td>
                             </tr>
                             <tr>
                                 <td>Main shut off valve</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="mainshutoffvalveSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="mainshutoffvalveUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="mainshutoffvalveNa"></td>
                             </tr>
                             <tr>
                                 <td>All other visible</td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
-                                <td class="text-center"><input type="checkbox"></td>
+                                <td class="text-center"><input type="checkbox" id="allothervisibleSatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="allothervisibleUnsatisfactory"></td>
+                                <td class="text-center"><input type="checkbox" id="allothervisibleNa"></td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+
                 <textarea id="plumbingUnsatDetails" class="form-control form-control-sm mb-3" rows="2"
                     placeholder="If unsatisfactory, provide comments/details…"></textarea>
 
@@ -554,34 +658,53 @@
                 <h5 class="mt-4">Supplemental Information</h5>
 
                 <div class="row gx-3 mb-4">
+                    <!-- Supply System -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Age of Piping Supply System:</label>
-                        <input type="text" id="supplyAge" class="form-control form-control-sm mb-1" placeholder="Years">
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="supplyOriginal">
-                            <label class="form-check-label" for="supplyOriginal">Original to home</label>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="text" id="supplyOriginal" class="form-control form-control-sm me-2"
+                                style="width: 60px;">
+                            <label for="supplyOriginal" class="mb-0">Original to home</label>
                         </div>
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="supplyComplete">
-                            <label class="form-check-label" for="supplyComplete">Completely re-piped</label>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="text" id="supplyComplete" class="form-control form-control-sm me-2"
+                                style="width: 60px;">
+                            <label for="supplyComplete" class="mb-0">Completely re-piped</label>
                         </div>
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="supplyPartial">
-                            <label class="form-check-label" for="supplyPartial">Partially re-piped</label>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="text" id="supplyPartial" class="form-control form-control-sm me-2"
+                                style="width: 60px;">
+                            <label for="supplyPartial" class="mb-0">Partially re-piped</label>
                         </div>
                     </div>
 
+                    <!-- Drain System -->
                     <div class="col-md-6">
                         <label class="form-label fw-semibold">Age of Piping Drain System:</label>
-                        <input type="text" id="drainAge" class="form-control form-control-sm mb-1" placeholder="Years">
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="drainOriginal">
-                            <label class="form-check-label" for="drainOriginal">Original to home</label>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="text" id="drainOriginal" class="form-control form-control-sm me-2"
+                                style="width: 60px;">
+                            <label for="drainOriginal" class="mb-0">Original to home</label>
                         </div>
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="drainComplete">
-                            <label class="form-check-label" for="drainComplete">Completely re-piped</label>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="text" id="drainComplete" class="form-control form-control-sm me-2"
+                                style="width: 60px;">
+                            <label for="drainComplete" class="mb-0">Completely re-piped</label>
                         </div>
-                        <div class="form-check"><input class="form-check-input" type="checkbox" id="drainPartial">
-                            <label class="form-check-label" for="drainPartial">Partially re-piped</label>
+
+                        <div class="d-flex align-items-center mb-2">
+                            <input type="text" id="drainPartial" class="form-control form-control-sm me-2"
+                                style="width: 60px;">
+                            <label for="drainPartial" class="mb-0">Partially re-piped</label>
                         </div>
                     </div>
                 </div>
+
 
                 <div class="mb-4">
                     <label class="form-label fw-semibold">Age of water heater:</label>
@@ -969,40 +1092,6 @@
                     inspector.<br>
                     <em>I certify that the above statements are true and correct.</em>
                 </p>
-                <div class="row g-3 mb-3">
-                    <div class="col-md-3">
-                        <label for="inspectorSignature" class="form-label">Inspector Signature</label>
-                        <input type="text" id="inspectorSignature" class="form-control form-control-sm"
-                            placeholder="Name">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inspectorTitle" class="form-label">Title</label>
-                        <input type="text" id="inspectorTitle" class="form-control form-control-sm" placeholder="Title">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="licenseNumber" class="form-label">License Number</label>
-                        <input type="text" id="licenseNumber" class="form-control form-control-sm" placeholder="Number">
-                    </div>
-                    <div class="col-md-3">
-                        <label for="inspectorDate" class="form-label">Date</label>
-                        <input type="date" id="inspectorDate" class="form-control form-control-sm">
-                    </div>
-                </div>
-                <div class="row g-3">
-                    <div class="col-md-4">
-                        <label for="companyName" class="form-label">Company Name</label>
-                        <input type="text" id="companyName" class="form-control form-control-sm" placeholder="Company">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="licenseType" class="form-label">License Type</label>
-                        <input type="text" id="licenseType" class="form-control form-control-sm" placeholder="Type">
-                    </div>
-                    <div class="col-md-4">
-                        <label for="workPhone" class="form-label">Work Phone</label>
-                        <input type="tel" id="workPhone" class="form-control form-control-sm"
-                            placeholder="(   )   -    ">
-                    </div>
-                </div>
             </section>
         </div>
     </form>
