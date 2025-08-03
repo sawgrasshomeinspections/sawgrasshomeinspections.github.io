@@ -7,7 +7,6 @@
  * to its corresponding field name inside the PDF template. For keys whose value
  * is an array, the HTML value will be written to every field in that array.
  **/
-
 const FIELD_MAP = {
     insuredName: "Text-eu88JHZNU9",
     policyNumber: "Text-xMlCBm_wKo",
@@ -197,6 +196,7 @@ const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
+    timeZone: "GMT",
 });
 
 const WIND_MITIGATION_PDF_NAME = "4 Point Inspection Form.pdf";
@@ -289,7 +289,7 @@ function getOrientationCorrection(orientation) {
     }
 }
 // Fills the PDF using current HTML-form values and returns a Uint8Array
-async function fillWindMitigation() {
+async function fill4Point(shouldFlatten) {
     const templateBytes = await fetchPdf(WIND_MITIGATION_PDF_NAME);
     const pdfDoc = await PDFLib.PDFDocument.load(templateBytes);
     const form = pdfDoc.getForm();
@@ -324,11 +324,13 @@ async function fillWindMitigation() {
             writeValue(pdfName, value);
         }
     }
-    
+
     await drawImages(pdfDoc);
 
-    const newForm = pdfDoc.getForm();
-    newForm.flatten();
+    if (shouldFlatten) {
+        const newForm = pdfDoc.getForm();
+        newForm.flatten();
+    }
 
     return pdfDoc.save();
 }
@@ -428,22 +430,27 @@ async function drawImages(pdfDoc) {
 addEventListener("load", () => {
     const elements = document.querySelectorAll('#dateToday')
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Shitty timezone conversion magic in play here
+
     elements.forEach((e) => {
-        e.valueAsDate = new Date()
+        e.valueAsDate = today;
     });
 });
 
 // Download button handler – generates the filled PDF and triggers the download
-document.querySelector('#download-pdf').addEventListener('click', async (e) => {
+document.querySelectorAll('#download-pdf, #download-pdf-flattened').forEach((el) => el.addEventListener('click', async (e) => {
     e.preventDefault();
 
+    const shouldFlatten = e.target.id.endsWith("flattened");
+
     try {
-        const filledBytes = await fillWindMitigation();
+        const filledBytes = await fill4Point(shouldFlatten);
 
         const blob = new Blob([filledBytes], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
 
-        const insuredName = document.querySelector('#insuredName').textContent || "Unknown";
+        const insuredName = document.querySelector('#insuredName').value || "Unknown";
 
         const a = Object.assign(document.createElement('a'), {
             href: url,
@@ -456,6 +463,5 @@ document.querySelector('#download-pdf').addEventListener('click', async (e) => {
         console.error('PDF generation failed:', err);
         alert('Something went wrong while creating the PDF. Please try again.');
     }
-});
-
+}));
 

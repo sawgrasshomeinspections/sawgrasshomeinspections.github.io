@@ -215,7 +215,7 @@ const FIELD_MAP = {
 
     // Signatures
     employeeInspector: "contractors and professional engineers only I had my employee",
-    inspectorSignatureDate: "Date",
+    inspectorSignatureDate: ["Date", "Inspection Date"],
     homeOwnerSignatureDate: "Date_2",
 };
 
@@ -223,6 +223,7 @@ const DATE_FORMATTER = new Intl.DateTimeFormat("en-US", {
     year: "numeric",
     month: "2-digit",
     day: "2-digit",
+    timeZone: "GMT",
 });
 
 const WIND_MITIGATION_PDF_NAME = "SW Wind Mitigation.pdf";
@@ -315,7 +316,7 @@ function getOrientationCorrection(orientation) {
     }
 }
 // Fills the PDF using current HTML-form values and returns a Uint8Array
-async function fillWindMitigation() {
+async function fill4Point() {
     const templateBytes = await fetchPdf(WIND_MITIGATION_PDF_NAME);
     const pdfDoc = await PDFLib.PDFDocument.load(templateBytes);
     const form = pdfDoc.getForm();
@@ -450,8 +451,11 @@ async function drawImages(pdfDoc) {
 addEventListener("load", () => {
     const elements = document.querySelectorAll('#date, #inspectorSignatureDate')
 
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Shitty timezone conversion magic in play here
+
     elements.forEach((e) => {
-        e.valueAsDate = new Date()
+        e.valueAsDate = today;
     });
 });
 
@@ -460,14 +464,15 @@ document.querySelector('#download-pdf').addEventListener('click', async (e) => {
     e.preventDefault();
 
     try {
-        const filledBytes = await fillWindMitigation();
+        const filledBytes = await fill4Point();
 
         const blob = new Blob([filledBytes], { type: 'application/pdf' });
         const url = URL.createObjectURL(blob);
+        const ownerName = document.querySelector('#ownerName').value || "Unknown";
 
         const a = Object.assign(document.createElement('a'), {
             href: url,
-            download: 'wind-mitigation-filled.pdf',
+            download: `${ownerName} Wind Mitigation.pdf`,
         });
 
         a.click();
