@@ -73,6 +73,7 @@ const FIELD_MAP = {
     hvacOKNo: "CheckBox-4G7rqRhpMq",
     hvacExplain: "Paragraph-0222b6wfRv",
     lastHVACService: "Text-Lc32uIoQyg",
+    hiddenUnknownHVACService: "Text-Lc32uIoQyg",
     stovePresentYes: "CheckBox-8oF1Nq5hxT",
     stovePresentNo: "CheckBox-4hdh_mP2P_",
     stoveInstalledYes: "CheckBox-4HCZDsXX3Q",
@@ -146,6 +147,7 @@ const FIELD_MAP = {
     predRoofLife: "Text-mJ6ZnMw5DO",
     predLastPermit: "Text-coJWmo8g0X",
     predLastUpdate: "Text--_TbRSgSKC",
+    predHiddenUnknownLastUpdate: "Text--_TbRSgSKC",
     predFullReplace: "CheckBox-UO0tk70p38",
     predPartialReplace: "CheckBox-mNVqOmFjKj",
     predPercentReplace: "Text-iY57sUEwII",
@@ -170,6 +172,7 @@ const FIELD_MAP = {
     secRoofLife: "Text-gbqZ28wkEL",
     secLastPermit: "Text-JohVlIlx-B",
     secLastUpdate: "Text-4vJie-j2my",
+    secHiddenUnknownLastUpdate: "Text-4vJie-j2my",
     secFullReplace: "CheckBox-nFtoBmsA_e",
     secPartialReplace: "CheckBox-G1WJfOOsdh",
     secPercentReplace: "Text--JFU9OBHxA",
@@ -437,6 +440,27 @@ addEventListener("load", () => {
         e.valueAsDate = today;
     });
 });
+
+function handleUnknownCheckbox(checkboxId, inputId, hiddenTextId) {
+    const checkbox = document.getElementById(checkboxId);
+    const input = document.getElementById(inputId);
+    const hiddenText = document.getElementById(hiddenTextId)
+
+    checkbox.addEventListener("change", () => {
+        if (checkbox.checked) {
+            input.value = "";
+            input.disabled = true;
+            hiddenText.value = "Unknown";
+        } else {
+            input.disabled = false;
+            hiddenText.value = "";
+        }
+    });
+}
+
+handleUnknownCheckbox("predUnknownLastUpdate", "predLastUpdate", "predHiddenUnknownLastUpdate");
+handleUnknownCheckbox("secUnknownLastUpdate", "secLastUpdate", "secHiddenUnknownLastUpdate");
+handleUnknownCheckbox("unknownHVACService", "lastHVACService", "hiddenUnknownHVACService")
 
 // Download button handler – generates the filled PDF and triggers the download
 document.querySelectorAll('#download-pdf, #download-pdf-flattened').forEach((el) => el.addEventListener('click', async (e) => {
